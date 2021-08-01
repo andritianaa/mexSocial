@@ -73,7 +73,7 @@ class ChangePasswordForm(forms.ModelForm):
 class EditProfileForm(forms.ModelForm):
 	first_name   = forms.CharField(widget=forms.TextInput(), max_length=50 , required=False)
 	last_name    = forms.CharField(widget=forms.TextInput(), max_length=50 , required=False)
- 	picture 	 = forms.ImageField(required=False)
+	picture 	 = forms.ImageField(required=False)
 	banner 	 	 = forms.ImageField(required=False)
 	location     = forms.CharField(widget=forms.TextInput(), max_length=25 , required=False)
 	url 	     = forms.URLField (widget=forms.TextInput(), max_length=60 , required=False)

@@ -1,0 +1,102 @@
+{%load static%}
+{%extends 'base.html'%}
+{%block content%}
+<div class="col s12 m13">
+  <div class="card">
+    <div class="card-image">
+      <img src="img/IMG_7097.JPG">
+    </div>
+    <div class="card-action">
+      <div class="row">
+        <div class="col s2"  style="margin-top: 20px;">
+          <img src="img/IMG_7495.JPG" class="circle responsive-img">
+        </div>
+        <div class="right-align"   style="margin-top: 30px;">
+          <a href="#" class="grey-text"><i class="material-icons ">edit</i></a>
+          <a href="#" class="red-text"><i class="material-icons ">favorite</i></a>
+        </div>
+        <div class="col s10" style="margin-top: -60px;">
+          <h3><b>Andritianaa</b></h3>
+          <h5>Andritiana Rakotonimanana</h5>
+          <p>I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively.</p>
+        </div>
+      </div>
+    </div>
+    <div class="card-tabs">
+      <ul class="tabs tabs-fixed-width">
+        <li class="tab col s3"><a href="#publication" class="active">Publications</a></li>
+        <li class="tab col s3"><a href="#photos">Photos</a></li>
+        <li class="tab col s3"><a href="#videos">Vidéos</a></li>
+      </ul>
+    </div>
+     <!-- publication section  -->
+    <div id="publication">
+      <div class="col s12 offset-s2 ">
+        <div class="col s12 m6">
+          <div class="card">
+            <div class="card-image">
+              <img src="img/IMG_7098.JPG">
+              <a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">favorite</i></a>
+            </div>
+            <div class="card-content">
+              <p>I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively.</p>
+            </div>
+            <div class="card-action">
+              <div class="row">
+                <div class="col s2">
+                  <img src="img/IMG_7495.JPG" class="circle responsive-img">
+                </div>
+                <div class="col s10">
+                  <h6><b>Andritiana</b></h6>
+                  <span>Publié le: <b>31/07/2021</b></span>
+                </div>
+              </div>
+            </div>
+            <div class="card-action">
+              <a href="#"><i class="material-icons ">thumb_up</i>123</a>
+              <a href="#"><i class="material-icons ">favorite</i>50</a>
+              <a href="#"><i class="material-icons ">comment</i>32</a>
+            </div>
+          </div>
+        </div>
+       </div>
+      </div>  
+    </div>
+    <!-- photo section  -->
+    <div id="photos">
+      <div class="row">
+        <div class="col s4">
+          <img src="img/IMG_7098.JPG" class="materialboxed" width="280" >
+        </div>
+        <div class="col s4">
+          <img src="img/IMG_7098.JPG" class="materialboxed" width="280" >
+        </div>
+        <div class="col s4">
+          <img src="img/IMG_7098.JPG" class="materialboxed" width="280" >
+        </div>
+      </div>
+    </div>
+    <!-- video section  -->
+    
+    <div id="videos">
+      <div class="row">
+        <div class="col s4">
+          <video class="responsive-video" controls="controls"  preload="metadata">
+            <source src="video/Storybeat-1621103183124.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="col s4">
+          <video class="responsive-video" controls="controls" preload="metadata">
+            <source src="video/Storybeat-1623629599962.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="col s4">
+          <video class="responsive-video" controls="controls" preload="metadata">
+            <source src="video/Storybeat-1623630222527.mp4" type="video/mp4">
+          </video>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{%endblock%}
