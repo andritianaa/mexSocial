@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+  <title>Starter Template - Materialize</title>
+
+  <!-- CSS  -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+</head>
+<body>
+  
+  <nav class="light-blue" role="navigation">
+    <div class="nav-wrapper container">
+      <a href="#!" class="brand-logo"><i class="material-icons">cloud</i>Logo</a>
+      <ul class="right hide-on-med-and-down">
+        <li><a href="#"><i class="material-icons left">home</i>Accueil</a></li>
+        <li><a href="#"><i class="material-icons left">notifications</i>Notifications</a></li>
+        <li><a href="#"><i class="material-icons left">add_box</i>Posts</a></li>
+        <li><a href="#"><i class="material-icons left">message</i>Message</a></li>
+        <li><a href="#" data-target="slide-out" class="sidenav-trigger show-on-large"><i class="material-icons left">person</i>Profile</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <ul id="slide-out" class="sidenav">
+    <li><div class="user-view">
+      <div class="background">
+        <img src="images/office.jpg">
+      </div>
+      <a href="#user"><img class="circle" src="images/yuna.jpg"></a>
+      <a href="#name"><span class="white-text name">John Doe</span></a>
+      <a href="#email"><span class="white-text email">jdandturk@gmail.com</span></a>
+    </div></li>
+    <li><a href="#!"><i class="material-icons">cloud</i>First Link With Icon</a></li>
+    <li><a href="#!">Second Link</a></li>
+    <li><div class="divider"></div></li>
+    <li><a class="subheader">Subheader</a></li>
+    <li><a class="waves-effect" href="#!">Third Link With Waves</a></li>
+  </ul>
+
+  <div class="container">
+    <div class="row">
+     <div class="col s12 m13">
+       <div class="card">
+         <div class="card-image">
+           <img src="img/IMG_7097.JPG">
+         </div>
+         <div class="card-action">
+          <div class="row">
+            <div class="col s2"  style="margin-top: 20px;">
+              <img src="img/IMG_7495.JPG" class="circle responsive-img">
+            </div>
+            <div class="right-align"   style="margin-top: 30px;">
+              <a href="#" class="grey-text"><i class="material-icons ">edit</i></a>
+              <a href="#" class="red-text"><i class="material-icons ">favorite</i></a>
+            </div>
+
+            <div class="col s10" style="margin-top: -60px;">
+              <h3><b>Andritianaa</b></h3>
+              <h5>Andritiana Rakotonimanana</h5>
+              <p>I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively.</p>
+            </div>
+          </div>
+        </div>
+          <div class="card-tabs">
+            <ul class="tabs tabs-fixed-width">
+              <li class="tab col s3"><a href="#publication" class="active">Publications</a></li>
+              <li class="tab col s3"><a href="#photos">Photos</a></li>
+              <li class="tab col s3"><a href="#videos">Vidéos</a></li>
+            </ul>
+          </div>
+          <!-- publication section  -->
+          <div id="publication">
+            <div class="col s12 offset-s2 ">
+              <div class="col s12 m6">
+                <div class="card">
+                  <div class="card-image">
+                    <img src="img/IMG_7098.JPG">
+                    <a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">favorite</i></a>
+                  </div>
+                  <div class="card-content">
+                    <p>I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively.</p>
+                  </div>
+                  <div class="card-action">
+                    <div class="row">
+                      <div class="col s2">
+                        <img src="img/IMG_7495.JPG" class="circle responsive-img">
+                      </div>
+                      <div class="col s10">
+                        <h6><b>Andritiana</b></h6>
+                        <span>Publié le: <b>31/07/2021</b></span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card-action">
+                    <a href="#"><i class="material-icons ">thumb_up</i>123</a>
+                    <a href="#"><i class="material-icons ">favorite</i>50</a>
+                    <a href="#"><i class="material-icons ">comment</i>32</a>
+                  </div>
+                </div>
+              </div>
+             </div>
+            </div>  
+          </div>
+
+          <!-- photo section  -->
+          <div id="photos">
+            <div class="row">
+              <div class="col s4">
+                <img src="img/IMG_7098.JPG" class="materialboxed" width="280" >
+              </div>
+              <div class="col s4">
+                <img src="img/IMG_7098.JPG" class="materialboxed" width="280" >
+              </div>
+              <div class="col s4">
+                <img src="img/IMG_7098.JPG" class="materialboxed" width="280" >
+              </div>
+            </div>
+          </div>
+          <!-- video section  -->
+          
+          <div id="videos">
+            <div class="row">
+              <div class="col s4">
+                <video class="responsive-video" controls="controls"  preload="metadata">
+                  <source src="video/Storybeat-1621103183124.mp4" type="video/mp4">
+                </video>
+              </div>
+              <div class="col s4">
+                <video class="responsive-video" controls="controls" preload="metadata">
+                  <source src="video/Storybeat-1623629599962.mp4" type="video/mp4">
+                </video>
+              </div>
+              <div class="col s4">
+                <video class="responsive-video" controls="controls" preload="metadata">
+                  <source src="video/Storybeat-1623630222527.mp4" type="video/mp4">
+                </video>
+              </div>
+            </div>
+          </div>
+
+
+
+       </div>
+     </div>
+    </div>
+  </div>
+
+  
+
+  <!--  Scripts-->
+  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="js/materialize.js"></script>
+  <script src="js/init.js"></script>
+
+  </body>
+</html>
