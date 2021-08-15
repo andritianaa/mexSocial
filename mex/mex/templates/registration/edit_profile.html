@@ -8,43 +8,39 @@
       <div class="card-content">
       <form method="post" enctype="multipart/form-data" action="" role="form">
         {% csrf_token %}
-        <h3 class="title is-3">Edit Profile</h3>
-          <div class="field">
-            <label class="label is-medium">Choose your picture</label>
-            <div class="file is-boxed">
-              {{ form.picture }}
+        <h3 class="title is-3">Modifier profil</h3>
+          <div class="file-field input-field ">
+            <div class="btn light-blue">
+              <span>Photo de profil</span>
+              {{form.picture}}
+            </div>
+            <div class="file-path-wrapper">
+              <input type="text" class="file-path validate">
             </div>
           </div>
-          <div class="field">
-            <label class="label is-medium">First name</label>
-            <div class="control">
-              {{ form.first_name }}
-            </div>
+
+
+          <div class="input-field col s12">
+            {{ form.first_name }}
+            <label for="first_name">Nom</label>
           </div>
-          <div class="field">
-            <label class="label is-medium">Last name</label>
-            <div class="control">
-              {{ form.last_name }}
-            </div>
+          <div class="input-field col s12">
+            {{ form.last_name }}
+            <label for="last_name">Prénom</label>
           </div>
-          <div class="field">
-            <label class="label is-medium">Location</label>
-            <div class="control">
-              {{ form.location }}
-            </div>
+          <div class="input-field col s12">
+            {{ form.location }}
+            <label for="location">Adresse</label>
           </div>
-          <div class="field">
-            <label class="label is-medium">url</label>
-            <div class="control">
-              {{ form.url }}
-            </div>
+          <div class="input-field col s12">
+            {{ form.url }}
+            <label for="url">URL</label>
           </div>
-          <div class="field">
-            <label class="label is-medium">BIO</label>
-            <div class="control">
-              {{ form.profile_info }}
-            </div>
+          <div class="input-field col s12">
+            {{ form.profile_info }}
+            <label for="profile_info">Bio</label>
           </div>
+          
           <div class="row">
             <div class="col s12">
               <span style="color: red; font-weight: bold;">{{ form.errors }}</span>
@@ -52,7 +48,7 @@
           </div>
           <div class="field">
             <p class="control">
-              <button type="submit" value="login" class="button is-success">Mise à jour </button>
+              <button type="submit" value="login" class="btn waves-effect waves-light light-blue">Mise à jour </button>
             </p>
           </div>
         </form>
