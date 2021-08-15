@@ -91,7 +91,7 @@ def EditProfile(request):
 			profile.profile_info       = form.cleaned_data.get('profile_info')
 			profile.save()
 			user_basic_info.save()
-			return redirect('index')
+			return redirect('profile')
 	else:
 		form = EditProfileForm(instance=profile)
 

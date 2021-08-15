@@ -1,7 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
-
 <div class="columns is-mobile">
   <div class="column is-half is-offset-one-quarter">
     <div class="card">
@@ -18,8 +17,15 @@
               <input type="text" class="file-path validate">
             </div>
           </div>
-
-
+          <div class="file-field input-field ">
+            <div class="btn light-blue">
+              <span>Photo couverture</span>
+              {{form.banner}}
+            </div>
+            <div class="file-path-wrapper">
+              <input type="text" class="file-path validate">
+            </div>
+          </div>
           <div class="input-field col s12">
             {{ form.first_name }}
             <label for="first_name">Nom</label>
@@ -56,5 +62,4 @@
     </div>
   </div>
 </div>
-
 {% endblock %}
