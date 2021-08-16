@@ -1,9 +1,12 @@
+from django import dispatch
 from django.db.models.fields import related
 from django.urls                import reverse
 from django.db                  import models
 from django.contrib.auth.models import User
-from confidentialite.models     import Confidentialite
+from confidentialite.models     import Confidentialite, Abonnement
+from django.db.models.signals   import post_save
 import uuid
+from django.dispatch            import receiver
 
 def user_directory_path(instance, filename):
     #alefa any amin'ny MEDIA_ROOT / user(id)
@@ -35,6 +38,21 @@ class Stream(models.Model):
     post     = models.ForeignKey(Post,on_delete=models.CASCADE)
     date     = models.DateTimeField(auto_now_add=True)
     visible  = models.BooleanField(default=False)
+    
+    @receiver(post_save, sender=Post, dispatch_uid ='unique_add_post')
+    def add_post(sender,instance, created,**kwargs):
+        post = instance
+        user = post.user
+        if created:
+            suivants = Abonnement.objects.all().filter(suivi=user)
+            for suivant in suivants:
+                if(suivant.confidentialite.numero >= post.confidentialite.numero):
+                    stream = Stream(post= post, user= suivant.suivant, date= post.date, suivi= user, visible= True)
+                    stream.save()
+                else:
+                    stream = Stream(post= post, user= suivant.suivant, date= post.date, suivi= user)
+                    stream.save()
+                    
     
 class Likes(models.Model):
     user = models.ForeignKey(User,on_delete=models.CASCADE, related_name= 'user_likes')
