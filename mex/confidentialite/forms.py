@@ -2,7 +2,7 @@ from django import forms
 from django.forms import fields, models
 from confidentialite.models import Confidentialite
 
-class nouvelConfidentialiteForm(forms.ModelForm):
+class nouvelleConfidentialiteForm(forms.ModelForm):
     description = forms.CharField(widget=forms.TextInput(attrs={'class' : 'zone-de-texte'}), required=True)
     can_message = forms.BooleanField(required=False)
     
