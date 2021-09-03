@@ -13,7 +13,6 @@ def NewPost(request):
         form = NewPostForm(request.POST, request.FILES)
         if form.is_valid():
             files = request.FILES.getlist('content')
-            title = form.cleaned_data.get('title')
             description = form.cleaned_data.get('description')
             
             confidentialite = form.cleaned_data.get('confidentialite')
@@ -23,7 +22,7 @@ def NewPost(request):
                 file_instance = PostContenu(file=file, user=user,confidentialite=confidentialites)
                 file_instance.save(file_instance)
                 
-            p, created =Post.objects.get_or_create(title=title, description=description,user=user,confidentialite = confidentialites)
+            p, created =Post.objects.get_or_create(description=description,user=user,confidentialite = confidentialites)
             p.content.set(files_objs)
             p.save()
             
@@ -32,7 +31,7 @@ def NewPost(request):
         form = NewPostForm()
         form.fields['confidentialite'].queryset = Confidentialite.objects.filter(user=user)
         
-        context = {
-            'form': form,
-        }
-        return render(request, 'newPost.html',context)
+    context = {
+        'form': form,
+    }
+    return render(request, 'newPost.html',context)
