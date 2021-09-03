@@ -3,12 +3,12 @@ from django.contrib.auth.models import User
 
 class Confidentialite(models.Model):
     numero = models.PositiveSmallIntegerField(default=0)
-    description = models.CharField(max_length=40,verbose_name='Description')
+    Description = models.CharField(max_length=40,verbose_name='Description')
     can_message= models.BooleanField(default=False)
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='tier_user')
     
     def __str__(self):
-        return str(self.description)
+        return str(self.Description)
     
     def save(self, *args,**kwargs):
         nombre = Confidentialite.objects.filter(user=self.user).count()

@@ -10,20 +10,21 @@ from django.db import transaction
 from django.template import loader
 from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse
-
 from django.core.paginator import Paginator
-
 from django.urls import resolve
 
+
+from confidentialite.models import Confidentialite
 # Create your views here.
 def UserProfile(request, username):
 	user = get_object_or_404(User, username=username)
 	profile = Profile.objects.get(user=user)
-
+	confidentialites = Confidentialite.objects.filter(user=user)
 	template = loader.get_template('profile.html')
 
 	context = {
 		'profile':profile,
+		'confidentialites':confidentialites,
 	}
 
 	return HttpResponse(template.render(context, request))

@@ -1,7 +1,8 @@
+from django.contrib.auth.models import User
 from confidentialite.models import Confidentialite
-from django.shortcuts import redirect, render
+from django.shortcuts import get_object_or_404, redirect, render
 from confidentialite.forms import nouvelleConfidentialiteForm
-from confidentialite.models import Confidentialite
+from confidentialite.models import Confidentialite,Abonnement
 from cryptography.fernet import Fernet
 
 def nouvelleConfidentialite(request):
@@ -28,3 +29,13 @@ def nouvelleConfidentialite(request):
     return render (request, 'newTier.html',context)
 
 
+def Subscribe(request,username,confidentialite_id):
+    user = request.user
+    subscribing = get_object_or_404(User, username=username)
+    confidentialite = Confidentialite.objects.get(id=confidentialite_id)
+    
+    try:
+        Abonnement.objects.get_or_create(suivant= user,suivi=subscribing, confidentialite = confidentialite)
+        return ('index')
+    except User.DoesNotExist:
+        return('index')

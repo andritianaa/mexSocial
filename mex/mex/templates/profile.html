@@ -39,6 +39,25 @@
         </div>
       </div>
     </div>
+    
+
+    {% if user.is_authenticated and user != profile.user %}
+    <div class="card-action">
+      <div class="row">
+        {% for confidentialite in confidentialites %}
+        <div class="col s12 m4">
+          <div class="card-panel">
+            <span>{{ confidentialite.description }}</span>
+            <br><br>
+            <a href="{% url 'subscribe' profile.user.username confidentialite.id%}" class="waves-effect waves-light btn amber">S'abonner</a>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+    {%endif%}
+
+
     <div class="card-tabs">
       <ul class="tabs tabs-fixed-width">
         <li class="tab col s3"><a href="#publication" class="active">Publications</a></li>
