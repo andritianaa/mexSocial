@@ -4,14 +4,13 @@
 {% block content %}
 
 <div class="center-align">
-    <h4>Search users</h4>
-    <span>Find users that you can messsage</span>
+    <h4>Rechercher</h4>
     <form class="col s12">
         <div class="input-field col s12">
             <input name="q" value="{{ request.GET.q }}" id="search" type="text" class="validate">
-            <label for="last_name">Search</label>
+            <label for="last_name">Rechercher</label>
           </div>
-          <button class="btn waves-effect waves-light" type="submit" name="action">Search
+          <button class="btn waves-effect waves-light" type="submit" name="action">
             <i class="material-icons right">send</i>
           </button>
     </form>
@@ -43,7 +42,7 @@
                             <br>
                             <span>@<b>{{ person.subscribed.username }}</b></span>
                             <p>{{ person.subscribed.profile.profile_info }}</p>
-                            <a href="{% url 'new-conversation' person.subscribed.username %}" class="waves-effect waves-light btn"><i class="material-icons right">send</i>Send a message!</a>
+                            <a href="{% url 'new-conversation' person.subscribed.username %}" class="waves-effect waves-light btn"><i class="material-icons right">send</i>Envoyer message</a>
                         </div>
                     </div>
                 </div>
