@@ -1,25 +1,46 @@
-{%load static%}
+
 {%extends 'base.html'%}
+
+{%load static%}
 {%block content%}
+
 <div class="col s12 offset-s2">
+
+  {%for stream in stream_data %}
+
+
   <div class="col s12 m6">
     <div class="card">
       <div class="card-image">
-        <img src="img/IMG_7097.JPG">
-        <span class="card-title">Card Title</span>
+        {% if stream.post.content.first.file.name|slice:"-3:" == 'jpg'%}
+        <a href="{{ stream.post.get_absolute_url }}">
+          <img src="{{ stream.post.content.first.file.url }}">
+        </a>
         <a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">favorite</i></a>
+        {%else%}
+        <div class="video-container">
+          <video class="responsive-video" controls="controls" preload="metadata">
+            <source src="{{ stream.post.content.first.file.url }}#t=0.5" type="video/mp4">
+          </video>
+        </div>
+
+        {%endif%}
       </div>
       <div class="card-content">
-        <p>I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively.</p>
+        {{stream.post.description}}
       </div>
       <div class="card-action">
         <div class="row">
           <div class="col s2">
-            <img src="img/IMG_7495.JPG" class="circle responsive-img">
+            {%if stream.post.user.profile.picture %}
+            <img src="{{ stream.post.user.profile.picture.url }}" class="circle responsive-img">
+            {%else%}
+            <img src="{%static 'img/noprofile.jpg'%}">
+          {%endif%}
           </div>
           <div class="col s10">
-            <h6><b>Andritiana</b></h6>
-            <span>Publié le: <b>31/07/2021</b></span>
+            <h6><b>{{ stream.post.user.first_name }} {{ stream.post.user.last_name }}</b></h6>
+            <span><b>{{ stream.post.date}}</b></span>
           </div>
         </div>
       </div>
@@ -30,5 +51,14 @@
       </div>
     </div>
   </div>
+  {% endfor %}
+</div><br><br>
+<div class="col s12 m12 center-align">
+  {%if stream_data.has_previous%}
+    <a href="?page={{ stream_data.previous_page_number}}" class="waves-effect waves-light btn">Prev</a>
+  {%endif%}
+  {%if stream_data.has_previous%}
+    <a href="?page={{ stream_data.next_page_number}}" class="waves-effect waves-light btn">Plus</a>
+  {%endif%}
 </div>
 {%endblock%}

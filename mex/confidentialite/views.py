@@ -10,14 +10,11 @@ def nouvelleConfidentialite(request):
     if request.method == "POST":
         form = nouvelleConfidentialiteForm(request.POST)
         if form.is_valid():
-            description = form.cleaned_data.get('description')
-            key = Fernet.generate_key()
-            fernet= Fernet(key)
-            description = fernet.encrypt(description.encode())
+            Description = form.cleaned_data.get('Description')
             
             
             can_message = form.cleaned_data.get('can_message')
-            Confidentialite.objects.create(description=description, user=user, can_message=can_message)
+            Confidentialite.objects.create(Description=Description, user=user, can_message=can_message)
             return redirect('index')
     else:
         form = nouvelleConfidentialiteForm()
