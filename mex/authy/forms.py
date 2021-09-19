@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
-from authy.models import Profile
+from authy.models import Profile, PeopleList
 
 def ForbiddenUsers(value):
 	forbidden_users = ['admin', 'css', 'js', 'authenticate', 'login', 'logout', 'administrator', 'root',
@@ -22,13 +22,14 @@ def UniqueUser(value):
 		raise ValidationError('User with this username already exists.')
 
 class SignupForm(forms.ModelForm):
-	username 		 = forms.CharField(widget=forms.TextInput(), max_length=30, required=True,)
-	email 			 = forms.CharField(widget=forms.EmailInput(), max_length=100, required=True,)
-	password 		 = forms.CharField(widget=forms.PasswordInput())
+	username = forms.CharField(widget=forms.TextInput(), max_length=30, required=True,)
+	email = forms.CharField(widget=forms.EmailInput(), max_length=100, required=True,)
+	password = forms.CharField(widget=forms.PasswordInput())
 	confirm_password = forms.CharField(widget=forms.PasswordInput(), required=True, label="Confirm your password.")
 
 	class Meta:
-		model  = User
+
+		model = User
 		fields = ('username', 'email', 'password')
 
 	def __init__(self, *args, **kwargs):
@@ -40,7 +41,7 @@ class SignupForm(forms.ModelForm):
 
 	def clean(self):
 		super(SignupForm, self).clean()
-		password 		 = self.cleaned_data.get('password')
+		password = self.cleaned_data.get('password')
 		confirm_password = self.cleaned_data.get('confirm_password')
 
 		if password != confirm_password:
@@ -48,20 +49,20 @@ class SignupForm(forms.ModelForm):
 		return self.cleaned_data
 
 class ChangePasswordForm(forms.ModelForm):
-	id 				 = forms.CharField(widget=forms.HiddenInput())
-	old_password   	 = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'input is-medium'}), label="Old password", required=True)
-	new_password 	 = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'input is-medium'}), label="New password", required=True)
+	id = forms.CharField(widget=forms.HiddenInput())
+	old_password = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'input is-medium'}), label="Old password", required=True)
+	new_password = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'input is-medium'}), label="New password", required=True)
 	confirm_password = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'input is-medium'}), label="Confirm new password", required=True)
 
 	class Meta:
-		model  = User
+		model = User
 		fields = ('id', 'old_password', 'new_password', 'confirm_password')
 
 	def clean(self):
 		super(ChangePasswordForm, self).clean()
-		id 				 = self.cleaned_data.get('id')
-		old_password 	 = self.cleaned_data.get('old_password')
-		new_password 	 = self.cleaned_data.get('new_password')
+		id = self.cleaned_data.get('id')
+		old_password = self.cleaned_data.get('old_password')
+		new_password = self.cleaned_data.get('new_password')
 		confirm_password = self.cleaned_data.get('confirm_password')
 		user = User.objects.get(pk=id)
 		if not user.check_password(old_password):
@@ -71,14 +72,21 @@ class ChangePasswordForm(forms.ModelForm):
 		return self.cleaned_data
 
 class EditProfileForm(forms.ModelForm):
-	first_name   = forms.CharField(widget=forms.TextInput(), max_length=50 , required=False)
-	last_name    = forms.CharField(widget=forms.TextInput(), max_length=50 , required=False)
-	picture 	 = forms.ImageField(required=False)
-	banner 	 	 = forms.ImageField(required=False)
-	location     = forms.CharField(widget=forms.TextInput(), max_length=25 , required=False)
-	url 	     = forms.URLField (widget=forms.TextInput(), max_length=60 , required=False)
+	first_name = forms.CharField(widget=forms.TextInput(), max_length=50, required=False)
+	last_name = forms.CharField(widget=forms.TextInput(), max_length=50, required=False)
+	picture = forms.ImageField(required=False)
+	banner = forms.ImageField(required=False)
+	location = forms.CharField(widget=forms.TextInput(), max_length=25, required=False)
+	url = forms.URLField(widget=forms.TextInput(), max_length=60, required=False)
 	profile_info = forms.CharField(widget=forms.TextInput(), max_length=260, required=False)
 
 	class Meta:
-		model  = Profile
-		fields = ('picture', 'banner' ,'first_name', 'last_name', 'location', 'url', 'profile_info')
+		model = Profile
+		fields = ('picture', 'banner', 'first_name', 'last_name', 'location', 'url', 'profile_info')
+
+class NewListForm(forms.ModelForm):
+	title = forms.CharField(widget=forms.TextInput(), max_length=150, required=True)
+
+	class Meta:
+		model = PeopleList
+		fields = ('title',)

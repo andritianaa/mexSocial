@@ -5,10 +5,11 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.urls.conf import include
 from confidentialite.views import Subscribe
-
+from post.views import index
 from authy.views import UserProfile
 
 urlpatterns = [
+    path('', index, name='index'), 
     path('admin/', admin.site.urls),
     path('user/',include('authy.urls')),
     path('sub/',include('confidentialite.urls')),
