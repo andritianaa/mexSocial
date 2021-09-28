@@ -4,8 +4,7 @@
 {% block content %}
 <div class="divider"></div>
 <div class="section">
-  <h5>My favorite posts</h5>
-  <p>Posts saved</p>
+  <h5>Enregistrements</h5>
 </div>
 <div class="divider"></div>
 
@@ -17,7 +16,7 @@
         {% if post.content.first.file.name|slice:"-3:" == 'jpg' %}
           <a href="{{ post.get_absolute_url }}"><img src="{{ post.content.first.file.url }}"></a>
           <span class="card-title"><b>{{ post.title }}</b></span>
-          <a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">favorite</i></a>
+          <a class="btn-floating halfway-fab waves-effect waves-light red">Favoris</a>
         {% else %}
         <div class="video-container">
           <video class="responsive-video" controls="controls" preload="metadata">
@@ -29,7 +28,7 @@
 
         <div class="card-content">
           {{ post.caption }}
-          <p><a href="{{ post.get_absolute_url }}">Click to see Full post</a></p>
+          <p><a href="{{ post.get_absolute_url }}">Voir la publication</a></p>
         </div>
 
         <div class="card-action">
@@ -43,15 +42,15 @@
             </div>
             <div class="col s10">
               <h6><b>{{ post.user.first_name }} {{ post.user.last_name }}</b></h6>
-              <span>Published on: <b>{{ post.posted }}</b></span>
+              <span><b>{{ post.posted }}</b></span>
             </div>
           </div>          
         </div>
 
         <div class="card-action">
-          <a href="{% url 'postlike' post.id %}"><i class="material-icons left">thumb_up</i>{{ stream.post.likes_count }} Likes</a>
-          <a href="#"><i class="material-icons">favorite</i> {{ stream.post.favorites_count }} Favorites</a>
-          <a href="#"><i class="material-icons">comment</i> {{ stream.post.comments_count }} Comments</a>
+          <a href="{% url 'postlike' post.id %}">{{ stream.post.likes_count }} likes</a>
+          <a href="#"> {{ stream.post.favorites_count }} Favoris</a>
+          <a href="#">{{ stream.post.comments_count }} Commentaires</a>
         </div>
 
       </div>
@@ -60,11 +59,11 @@
 
     <div class="col s12 m12 center-align">
         {% if bookmark_data.has_previous %}
-          <a href="?page={{ bookmark_data.previous_page_number }}" class="waves-effect waves-light btn"><i class="material-icons right">arrow_back</i>Back</a>
+          <a href="?page={{ bookmark_data.previous_page_number }}" class="waves-effect waves-light btn">Retour</a>
         {% endif %}
     
         {% if bookmark_data.has_next %}
-          <a href="?page={{ bookmark_data.next_page_number }}" class="waves-effect waves-light btn"><i class="material-icons right">add</i>Load more</a>
+          <a href="?page={{ bookmark_data.next_page_number }}" class="waves-effect waves-light btn">Plus</a>
         {% endif %}
       </div>
 

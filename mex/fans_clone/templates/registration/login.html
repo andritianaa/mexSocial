@@ -16,26 +16,23 @@
 
   <div class="row center-align">
     <div class="col s6 offset-s3">
-      <h4>Fans</h4>
       <div class="card">
           <form method="post" action="" role="form">
           {% csrf_token %}
-           <h3 class="title is-3">Login</h3>
-
            <div class="input-field col s12">
             {{ form.username }}
-            <label for="username">Username</label>
+            <label for="username">Nom d'utilisateur</label>
           </div>
    
           <div class="input-field col s12">
             {{ form.password }}
-            <label for="password">Password</label>
+            <label for="password">Mot de passe</label>
           </div>
 
       {% if form.errors %}
       <div class="row">
         <div class="col s12">
-          <span style="color: red; font-weight: bold;">Your username or password did not match.</span>
+          <span style="color: red; font-weight: bold;">Votre nom d'utilisateur ou votre mot de passe n'est pas correcte.</span>
         </div>
       </div>
       {% endif %}
@@ -43,7 +40,7 @@
       <div class="field">
       <p class="control">
         <button type="submit" value="login" class="btn waves-effect waves-light">
-          Login
+          Connexion
         </button>
       </p>
     </div>
@@ -52,7 +49,7 @@
 
 
 
-    <a href="{% url 'signup' %}" class="btn waves-effect waves-light">Create an account</a>
+    <a href="{% url 'signup' %}" class="btn waves-effect waves-light">Créer un compte</a>
   </form>
 
   </div>

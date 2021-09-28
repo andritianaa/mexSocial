@@ -15,10 +15,10 @@
             {% endif %}
                 <span class="title">{{ notification.sender.first_name }} {{ notification.sender.last_name }}</span>
                 <p><b>@{{ notification.sender.username }}</b></p>
-                <a href="{% url 'delete-notification' notification.id %}" class="secondary-content"><i class="material-icons">delete</i></a>
+                <a href="{% url 'delete-notification' notification.id %}" class="secondary-content">Supprimer</a>
                 <br>
-                <p style="font-style: italic;"><b>Liked your post</b></p>
-                <a href="{% url 'postdetails' notification.post.id %}">See post</a>
+                <p style="font-style: italic;"><b>Aime votre publication</b></p>
+                <a href="{% url 'postdetails' notification.post.id %}">Voir la publication+</a>
             </li>
     {% elif notification.notification_type == 2 %}
         <li class="collection-item avatar">
@@ -32,7 +32,7 @@
             <a href="{% url 'delete-notification' notification.id %}" class="secondary-content"><i class="material-icons">delete</i></a>
             <p>Commented: </p>
             <p style="font-style: italic;"><b>"{{ notification.text_preview }}"</b></p>
-            <a href="{% url 'postdetails' notification.post.id %}">See post</a>
+            <a href="{% url 'postdetails' notification.post.id %}">Voir</a>
         </li>
     {% else %}
     <li class="collection-item avatar">
@@ -44,7 +44,7 @@
             <span class="title">{{ notification.sender.first_name }} {{ notification.sender.last_name }}</span>
             <p><b>@{{ notification.sender.username }}</b></p>
             <a href="{% url 'delete-notification' notification.id %}" class="secondary-content"><i class="material-icons">delete</i></a>
-            <p style="font-style: italic;"><b>Subscribed to you!</b></p>
+            <p style="font-style: italic;"><b>Vous suit.</b></p>
         </li>
     {% endif %}
 
@@ -52,8 +52,7 @@
     <div class="center-align">
         <br><br><br><br><br>
         <i class="material-icons large">inbox</i>
-        <h3>No notifications</h3>
-        <h5>Your inbox is empty</h5>
+        <h3>Aucune notification</h3>
         <br><br><br><br><br>
     </div>
 {% endfor %}
