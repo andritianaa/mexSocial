@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+
 {% block content %}
 <div class="divider"></div>
 <div class="section">
@@ -24,11 +25,7 @@
           {% else %}
           <img src="{% static 'img/no_avatar.jpg' %}" class="circle responsive-img">
           {% endif %}
-          {% if person.expired == True %}
-          <span class="red-text">Expiré</span>
-          {% else %}
-          <span class="teal-text accent-4">Il reste <b>{{ person.date }}</b> jours</span>
-          {% endif %}
+
         </div>
         <div class="col s8">
           <span class="card-title">
@@ -37,15 +34,13 @@
           <br>
           <span>@<b>{{ person.subscribed.username }}</b></span>
           <p>{{ person.subscribed.profile.profile_info }}</p>
-          {% if person.expired == True %}
-          <a class="waves-effect waves-light btn amber">Renouveller</a>
-          {% else %}
-          <a class="waves-effect waves-light btn red"><i class="material-icons left">cancel</i>Annuler Abonnement</a>
-          {% endif %}
+          <a class="waves-effect waves-light btn red">Désabonner</a>
         </div>
       </div>
     </div>
   </div>
 </div>
 {% endfor %}
+
+
 {% endblock %}

@@ -1,12 +1,14 @@
+<!-- Modal Structure For the new list form -->
 <div id="modal2" class="modal">
   <div class="modal-content">
-    <h4>Créer une liste</h4>
+    <h4>Crér une liste</h4>
+    <p>Créer une liste pour y ajouter des personnes</p>
     <form role="form" method="POST" class="col s12">
       {% csrf_token %}
       <div class="row">
         <div class="input-field col s12">
           {{ form.title }}
-          <label for="title">Titre</label>
+          <label for="title">Nom de la liste </label>
         </div>
       </div>
   </div>
@@ -16,3 +18,4 @@
     </form>
   </div>
 </div>
+<!-- END Modal Structure For the list select -->

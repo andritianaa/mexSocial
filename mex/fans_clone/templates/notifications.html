@@ -1,11 +1,8 @@
 {% extends 'base.html' %}
 {% load static %}
-
 {% block content %}
-
 <ul class="collection">
 {% for notification in notifications %}
-
     {% if notification.notification_type == 1 %}
             <li class="collection-item avatar">
             {% if notification.sender.profile.picture %}
@@ -17,8 +14,8 @@
                 <p><b>@{{ notification.sender.username }}</b></p>
                 <a href="{% url 'delete-notification' notification.id %}" class="secondary-content">Supprimer</a>
                 <br>
-                <p style="font-style: italic;"><b>Aime votre publication</b></p>
-                <a href="{% url 'postdetails' notification.post.id %}">Voir la publication+</a>
+                <p style="font-style: italic;"><b>a liké votre </b></p>
+                <a href="{% url 'postdetails' notification.post.id %}">publication</a>
             </li>
     {% elif notification.notification_type == 2 %}
         <li class="collection-item avatar">
@@ -29,10 +26,10 @@
         {% endif %}
             <span class="title">{{ notification.sender.first_name }} {{ notification.sender.last_name }}</span>
             <p><b>@{{ notification.sender.username }}</b></p>
-            <a href="{% url 'delete-notification' notification.id %}" class="secondary-content"><i class="material-icons">delete</i></a>
-            <p>Commented: </p>
+            <a href="{% url 'delete-notification' notification.id %}" class="secondary-content">Supprimer</a>
+            <p>A commenté: </p>
             <p style="font-style: italic;"><b>"{{ notification.text_preview }}"</b></p>
-            <a href="{% url 'postdetails' notification.post.id %}">Voir</a>
+            <a href="{% url 'postdetails' notification.post.id %}">voir la publication</a>
         </li>
     {% else %}
     <li class="collection-item avatar">
@@ -44,18 +41,13 @@
             <span class="title">{{ notification.sender.first_name }} {{ notification.sender.last_name }}</span>
             <p><b>@{{ notification.sender.username }}</b></p>
             <a href="{% url 'delete-notification' notification.id %}" class="secondary-content"><i class="material-icons">delete</i></a>
-            <p style="font-style: italic;"><b>Vous suit.</b></p>
+            <p style="font-style: italic;"><b>vous suit.</b></p>
         </li>
     {% endif %}
 
     {% empty %}
     <div class="center-align">
-        <br><br><br><br><br>
-        <i class="material-icons large">inbox</i>
         <h3>Aucune notification</h3>
-        <br><br><br><br><br>
-    </div>
 {% endfor %}
 </ul>
-
 {% endblock %}

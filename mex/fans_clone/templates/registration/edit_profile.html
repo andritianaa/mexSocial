@@ -10,11 +10,11 @@
 
     <form method="post" enctype="multipart/form-data" action="" role="form">
       {% csrf_token %}
-    <h3 class="title is-3">Modifier le profil</h3>
+    <h3 class="title is-3">Edit Profile</h3>
 
           <div class="file-field input-field">
             <div class="btn">
-              <span>Photo de profil</span>
+              <span>Picture</span>
               {{ form.picture }}
             </div>
             <div class="file-path-wrapper">
@@ -24,7 +24,7 @@
 
           <div class="file-field input-field">
             <div class="btn">
-              <span>Photo de couverture</span>
+              <span>Banner</span>
               {{ form.banner }}
             </div>
             <div class="file-path-wrapper">
@@ -34,22 +34,27 @@
 
           <div class="input-field col s12">
             {{ form.first_name }}
-            <label for="first_name">Prénom</label>
+            <label for="first_name">First name</label>
           </div>
 
           <div class="input-field col s12">
             {{ form.last_name }}
-            <label for="last_name">Nom</label>
+            <label for="last_name">Last name</label>
           </div>
 
           <div class="input-field col s12">
             {{ form.location }}
-            <label for="location">Adresse</label>
+            <label for="location">Location</label>
+          </div>
+
+          <div class="input-field col s12">
+            {{ form.url }}
+            <label for="url">URL</label>
           </div>
 
           <div class="input-field col s12">
             {{ form.profile_info }}
-            <label for="profile_info">Bio</label>
+            <label for="profile_info">BIO</label>
           </div>
 
       <div class="row">
@@ -62,7 +67,7 @@
       <div class="field">
       <p class="control">
         <button type="submit" value="login" class="btn waves-effect waves-light">
-          Mettre à jour
+          Update
         </button>
       </p>
     </div>

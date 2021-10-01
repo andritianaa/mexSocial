@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import redirect, render, get_object_or_404
 
 from post.forms import NewPostForm
 from comment.forms import CommentForm

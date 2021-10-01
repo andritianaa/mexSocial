@@ -5,11 +5,11 @@
     <div class="col s12 m6">
         <div class="card">
             <form method="post" action="" enctype="multipart/form-data" role="form" class="col s12">
-                <h4>Publier</h4>
+                <h4>Nouvelle publication</h4>
                 {% csrf_token %}
                 <div class="file-field input-field col s12">
                     <div class="btn">
-                        <span>Fichiers</span>
+                        <span>Fichier</span>
                         {{ form.content }}
                     </div>
                     <div class="file-path-wrapper">
@@ -34,5 +34,4 @@
         </div>
     </div>
 </div>
-
 {% endblock %}
