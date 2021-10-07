@@ -1,13 +1,13 @@
 from django import forms
 from post.models import Post
-from tier.models import Tier
+
+from django.forms import ClearableFileInput
 
 class NewPostForm(forms.ModelForm):
-    title = forms.CharField(widget=forms.TextInput(attrs={'class': 'validate'}), required=True)
-    content = forms.FileField(widget=forms.ClearableFileInput(attrs={'multiple': True}), required=True)
-    caption = forms.CharField(widget=forms.Textarea(attrs={'class': 'materialize-textarea'}), required=True)
-    tier = forms.ModelChoiceField(queryset=Tier.objects.all())
+	content = forms.FileField(widget=forms.ClearableFileInput(attrs={'multiple': True}), required=True)
+	caption = forms.CharField(widget=forms.Textarea(attrs={'class': 'input is-medium'}), required=True)
+	tags = forms.CharField(widget=forms.TextInput(attrs={'class': 'input is-medium'}), required=True)
 
-    class Meta:
-        model = Post
-        fields = ('content', 'title', 'caption', 'tier')
+	class Meta:
+		model = Post
+		fields = ('content', 'caption', 'tags')

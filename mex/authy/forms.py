@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
-from authy.models import Profile, PeopleList
+from authy.models import Profile
 
 def ForbiddenUsers(value):
 	forbidden_users = ['admin', 'css', 'js', 'authenticate', 'login', 'logout', 'administrator', 'root',
@@ -72,21 +72,13 @@ class ChangePasswordForm(forms.ModelForm):
 		return self.cleaned_data
 
 class EditProfileForm(forms.ModelForm):
+	picture = forms.ImageField(required=False)
 	first_name = forms.CharField(widget=forms.TextInput(), max_length=50, required=False)
 	last_name = forms.CharField(widget=forms.TextInput(), max_length=50, required=False)
-	picture = forms.ImageField(required=False)
-	banner = forms.ImageField(required=False)
 	location = forms.CharField(widget=forms.TextInput(), max_length=25, required=False)
 	url = forms.URLField(widget=forms.TextInput(), max_length=60, required=False)
 	profile_info = forms.CharField(widget=forms.TextInput(), max_length=260, required=False)
 
 	class Meta:
 		model = Profile
-		fields = ('picture', 'banner', 'first_name', 'last_name', 'location', 'url', 'profile_info')
-
-class NewListForm(forms.ModelForm):
-	title = forms.CharField(widget=forms.TextInput(), max_length=150, required=True)
-
-	class Meta:
-		model = PeopleList
-		fields = ('title',)
+		fields = ('picture', 'first_name', 'last_name', 'location', 'url', 'profile_info')
