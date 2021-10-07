@@ -17,7 +17,6 @@ from authy.models import Profile
 
 
 
-# Create your views here.
 @login_required
 def index(request):
 	user = request.user
@@ -98,7 +97,7 @@ def NewPost(request):
 			caption = form.cleaned_data.get('caption')
 			tags_form = form.cleaned_data.get('tags')
 
-			tags_list = list(tags_form.split(','))
+			tags_list = list(tags_form.split(' '))
 
 			for tag in tags_list:
 				t, created = Tag.objects.get_or_create(title=tag)

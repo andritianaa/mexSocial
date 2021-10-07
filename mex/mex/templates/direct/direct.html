@@ -1,13 +1,12 @@
 {% extends 'base.html' %}
 {% load static %}
-
 {% load humanize %}
 {% block content %}
 <div class="columns is-mobile">
   <div class="column is-one-quarter">
     <aside class="menu">
       <h1 class="title is-2">
-        Messages
+        Discussions
       </h1>
       <ul style="overflow-y: scroll; height: 500px" class="menu-list">
         {% for message in messages %}
@@ -46,7 +45,7 @@
       </ul>
     </aside>
     <br>
-    <a href="{% url 'usersearch' %}" class="button is-success">New message</a>
+    <a href="{% url 'usersearch' %}" class="button is-success">Nouveau message</a>
   </div>
   <div class="column">
     <div style="overflow-y: scroll; height: 500px">
@@ -60,7 +59,6 @@
               <p>
                 <strong>{{ direct.sender.profile.first_name }} {{ direct.sender.profile.last_name }}</strong>
                 <small>@{{ direct.sender.username }}</small>
-                
                 <strong><small>{{ direct.date|naturaltime}}</small></strong>
               </p>
               {{ direct.body }}
@@ -82,13 +80,13 @@
           <input type="hidden" name="to_user" value="{{ active_direct }}">
           <div class="field">
             <p class="control">
-              <textarea class="textarea" name="body" placeholder="Add a comment..."></textarea>
+              <input type="text" class="textarea" name="body" placeholder="Message"/>
             </p>
           </div>
           <nav class="level">
             <div class="level-left">
               <div class="level-item">
-                <button type="submit" name="action" class="button is-info">Send</buttom>
+                <button type="submit" name="action" class="button is-info">Envoyer</buttom>
               </div>
             </div>
           </nav>
