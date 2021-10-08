@@ -145,3 +145,4 @@ LOGIN_URL = '/user/login/'
 
 #Celery Broker
 CELERY_BROKER_URL = 'amqp://localhost:5672'
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
