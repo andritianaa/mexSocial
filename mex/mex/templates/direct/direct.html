@@ -25,15 +25,14 @@
               </div>
               <div class="media-content">
                 <div class="content">
-                  <p>
+                  <a href="{% url 'profile' message.user.username %}">
                     <strong>{{ message.user.profile.first_name }} {{ message.user.profile.last_name }}</strong>
                     <small>@{{ message.user.username }}</small>
-                  </p>
+                  </a>
                 </div>
                 <div class="content">
                   {% if message.unread %}
-                  <p style="font-weight: bold; color: red;">
-                    <i class="material-icons">mark_chat_unread</i> {{ message.unread }}
+                  <p style="font-weight: bold; color: red;"> {{ message.unread }}
                   </p>
                   {% endif %}
                 </div>
@@ -55,14 +54,14 @@
           <div class="media-left">
           </div>
           <div class="media-content">
-            <div class="content">
+            <a href="{% url 'profile' user.username %}" class="content">
               <p>
                 <strong>{{ direct.sender.profile.first_name }} {{ direct.sender.profile.last_name }}</strong>
                 <small>@{{ direct.sender.username }}</small>
                 <strong><small>{{ direct.date|naturaltime}}</small></strong>
               </p>
               {{ direct.body }}
-            </div>
+            </a>
           </div>
         </article>
       </div>

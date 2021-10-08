@@ -1,44 +1,23 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
-<div class="columns is-mobile">
-  <div class="column is-offset-one-fifth">
-    <div class="field has-addons">
-      <form>
-        <div class="control">
-          <input class="input is-large" name="q" type="text" placeholder="Search users..." value="{{ request.GET.q }}">
-        </div>
-        <div class="control">
-          <button type="submit" class="button is-success">Rechercher</button>
-        </div>
-      </form>
-    </div>
+<form class="rechercher">
+  <input class="input_text" name="q" type="text" placeholder=" Rechercher..." value="{{ request.GET.q }}">
+  <div class="control">
+    <button type="submit" class="primaryColor boutton">Rechercher</button>
   </div>
-</div>
-<div class="column is-one-quarter">
+</form>
+<div class="resultats_total">
   {% for user in users %}
-  <a href="{% url 'profile' user.username %}" class="box">
-    <article class="media">
-      <div class="media-left">
-        <figure class="image is-64x64">
-          {% if user.profile.picture %}
-          <img src="{{ user.profile.picture.url }}" alt="Placeholder image">
-          {% else %}
-          <img src="https://bulma.io/images/placeholders/96x96.png" alt="Placeholder image">
-          {% endif %}
-        </figure>
-      </div>
-      <div class="media-content">
-        <div class="content">
-          <p>
-            <strong>{{ user.profile.first_name }}
-              {{ user.profile.last_name }}</strong><small>@{{ user.username }}</small>
-          </p>
-          <a href="{% url 'newconversation' user.username %}" class="button is-info">Message</a>
-        </div>
-      </div>
-    </article>
-  </a>
+  <div class="resultat_profil">
+    {% if user.profile.picture %}
+    <img class="img_profile_direct" src="{{ user.profile.picture.url }}" alt="Photo de {{ user.username }}">
+    {% else %}
+    <img class="img_profile_direct" src="{% static 'img/no_picture.png'%}" alt="Photo de {{ user.username }}">
+    {% endif %}
+    <strong>{{ user.profile.first_name }} {{ user.profile.last_name }}</strong><small>@{{ user.username }}</small>
+    <a href="{% url 'newconversation' user.username %}" class="boutton primaryColor">Message</a>
+  </div>
   {% endfor %}
 </div>
 {% endblock %}
