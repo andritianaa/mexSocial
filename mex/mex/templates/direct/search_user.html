@@ -17,7 +17,7 @@
 </div>
 <div class="column is-one-quarter">
   {% for user in users %}
-  <div class="box">
+  <a href="{% url 'profile' user.username %}" class="box">
     <article class="media">
       <div class="media-left">
         <figure class="image is-64x64">
@@ -38,7 +38,7 @@
         </div>
       </div>
     </article>
-  </div>
+  </a>
   {% endfor %}
 </div>
 {% endblock %}

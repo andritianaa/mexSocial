@@ -8,12 +8,13 @@
   <title>Mex</title>
   <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
-  
+
 <body>
-  <div class="navigation_bar primaryColor" role="navigation" aria-label="main navigation">
-    <div class="small_logo"></div>
+  <div class="navigation_bar" role="navigation" aria-label="main navigation">
+    <a href="{% url 'index' %}" class="small_logo"></a>
     <div class="navigation_bar_list">
       <a class="navigation_bar_item" href="{% url 'index' %}">Fil d'actualité</a>
+      <a class="navigation_bar_item" href="{% url 'usersearch' %}">Rechercher</a>
       <a class="navigation_bar_item" href="{% url 'show-notifications' %}">Notifications
         {% if count_notifications %}
         <span class="badge">{{ count_notifications }}</span>
@@ -33,10 +34,9 @@
       <a class="navigation_bar_item" href="{% url 'logout' %}">Deconnexion
       </a>
     </div>
-
   </div>
   <br><br><br>
-
+  
   {% block banner %}
   {% endblock %}
   <section class="section">

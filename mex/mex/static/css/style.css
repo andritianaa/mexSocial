@@ -17,7 +17,7 @@
 }
 
 .primaryColor {
-    background-color: var(--white);
+    background-color: var(--primaryColor);
 }
 
 .navigation_bar {
@@ -29,6 +29,7 @@
     align-items: center;
     flex-direction: row;
     justify-content: right;
+    background-color: var(--white);
 }
 .navigation_bar_list{
     margin-right: 1rem;
