@@ -13,9 +13,9 @@
   </div>
   <div class="media-content">
     <div class="content">
-      <h1 style="font-weight: bold;" class="title is-1">@{{ profile.user }}</h1>
-      <h2 class="subtitle is-3">{% if profile.first_name %}{{ profile.first_name }} {{ profile.last_name }} {% endif %}
-      </h2>
+      <h2 style="font-weight: bold;" class="title is-1">@{{ profile.user }}</h2>
+      <h1 class="subtitle is-3">{% if profile.first_name %}{{ profile.first_name }} {{ profile.last_name }} {% endif %}
+      </h1>
       {% if user.is_authenticated and user != profile.user %}
       <div class="media-right">
         {% if follow_status == True %}
@@ -57,10 +57,10 @@
     <div class="tabs is-centered">
       <ul>
         <li class="{% if url_name == 'profile' %}is-active{% endif %}">
-          <a href="{% url 'profile' profile.user %}"><i class="material-icons">dashboard</i>Publications</a>
+          <a href="{% url 'profile' profile.user %}">Publications</a>
         </li>
         <li class="{% if url_name == 'profilefavorites' %}is-active{% endif %}">
-          <a href="{% url 'profilefavorites' profile.user %}"><i class="material-icons">save_alt</i>Enregistrements</a>
+          <a href="{% url 'profilefavorites' profile.user %}"Enregistrements</a>
         </li>
       </ul>
     </div>

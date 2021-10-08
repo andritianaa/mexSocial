@@ -6,52 +6,37 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Mex</title>
-  <link rel="stylesheet" href="{% static 'css/bulma.min.css' %}">
   <link rel="stylesheet" href="{% static 'css/style.css' %}">
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
-
+  
 <body>
-  <nav class="navbar" role="navigation" aria-label="main navigation">
-    <div id="navbarBasicExample" class="navbar-menu">
-      <div class="navbar-start">
-        <a href="{% url 'index' %}" class="navbar-item"><i class="material-icons">home</i></a>
-        <a class="navbar-item">
-          <i class="material-icons">explore</i></a>
-        <a href="{% url 'show-notifications' %}" class="navbar-item">
-          <i class="material-icons">notifications</i>
-          {% if count_notifications %}
-          <span class="badge">{{ count_notifications }}</span>
-          {% endif %}
-        </a>
-        <a href="{% url 'inbox' %}" class="navbar-item">
-          <i class="material-icons">inbox</i>
-          {% if directs_count %}
-          <span class="badge">{{ directs_count }}</span>
-          {% endif %}
-        </a>
-        <a href="{% url 'newpost' %}" class="navbar-item">
-          <i class="material-icons">perm_media</i></a>
-        <a href="{% url 'newstory' %}" class="navbar-item">
-          <i class="material-icons">photo_filter</i></a>
-        <div class="navbar-item has-dropdown is-hoverable">
-          <a class="navbar-link"></a>
-          <div class="navbar-dropdown">
-            <a href="{% url 'profile' request.user %}" class="navbar-item">
-              <i class="material-icons">face</i><strong>{{ request.user }}</strong>
-            </a>
-            <a class="navbar-item"  href="{% url 'change_password' %}">
-              Changer mot de passe
-            </a>
-            <hr class="navbar-divider">
-            <a href="{% url 'logout' %}" class="navbar-item">
-              Deconnexion
-            </a>
-          </div>
-        </div>
-      </div>
+  <div class="navigation_bar primaryColor" role="navigation" aria-label="main navigation">
+    <div class="small_logo"></div>
+    <div class="navigation_bar_list">
+      <a class="navigation_bar_item" href="{% url 'index' %}">Fil d'actualité</a>
+      <a class="navigation_bar_item" href="{% url 'show-notifications' %}">Notifications
+        {% if count_notifications %}
+        <span class="badge">{{ count_notifications }}</span>
+        {% endif %}
+      </a>
+      <a class="navigation_bar_item" href="{% url 'inbox' %}">Messages
+        {% if directs_count %}
+        <span class="badge">{{ directs_count }}</span>
+        {% endif %}
+      </a>
+      <a class="navigation_bar_item" href="{% url 'newpost' %}">Publier
+      </a>
+      <a class="navigation_bar_item" href="{% url 'profile' request.user %}">{{ request.user }}
+      </a>
+      <a class="navigation_bar_item" href="{% url 'change_password' %}">Changer mot de passe
+      </a>
+      <a class="navigation_bar_item" href="{% url 'logout' %}">Deconnexion
+      </a>
     </div>
-  </nav>
+
+  </div>
+  <br><br><br>
+
   {% block banner %}
   {% endblock %}
   <section class="section">
@@ -63,8 +48,8 @@
     </div>
   </section>
 </body>
-<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 <script src="{% static 'js/init.js' %}"></script>
+<script src="{% static 'js/jquery-2.1.1.min.js' %}"></script>
 <script src="{% static 'js/slider.js' %}"></script>
 
 </html>

@@ -7,19 +7,19 @@ def ForbiddenUsers(value):
 	forbidden_users = ['admin', 'css', 'js', 'authenticate', 'login', 'logout', 'administrator', 'root',
 	'email', 'user', 'join', 'sql', 'static', 'python', 'delete']
 	if value.lower() in forbidden_users:
-		raise ValidationError('Invalid name for user, this is a reserverd word.')
+		raise ValidationError("Nom d'utilisateur invalide.")
 
 def InvalidUser(value):
 	if '@' in value or '+' in value or '-' in value:
-		raise ValidationError('This is an Invalid user, Do not user these chars: @ , - , + ')
+		raise ValidationError("Le nom d'utilisateur ne doit pas contenir le charactères: @ , - , + ")
 
 def UniqueEmail(value):
 	if User.objects.filter(email__iexact=value).exists():
-		raise ValidationError('User with this email already exists.')
+		raise ValidationError('Un compte avec cet adresse email existe déjà')
 
 def UniqueUser(value):
 	if User.objects.filter(username__iexact=value).exists():
-		raise ValidationError('User with this username already exists.')
+		raise ValidationError("Ce nom d'utilisateur est déjà utilisé")
 
 class SignupForm(forms.ModelForm):
 	username = forms.CharField(widget=forms.TextInput(), max_length=30, required=True,)
@@ -45,7 +45,7 @@ class SignupForm(forms.ModelForm):
 		confirm_password = self.cleaned_data.get('confirm_password')
 
 		if password != confirm_password:
-			self._errors['password'] = self.error_class(['Passwords do not match. Try again'])
+			self._errors['password'] = self.error_class(['Les mots de passe ne correspondent pas.'])
 		return self.cleaned_data
 
 class ChangePasswordForm(forms.ModelForm):
@@ -66,9 +66,9 @@ class ChangePasswordForm(forms.ModelForm):
 		confirm_password = self.cleaned_data.get('confirm_password')
 		user = User.objects.get(pk=id)
 		if not user.check_password(old_password):
-			self._errors['old_password'] =self.error_class(['Old password do not match.'])
+			self._errors['old_password'] =self.error_class(["L'ancien mot de passe n'est pas valide"])
 		if new_password != confirm_password:
-			self._errors['new_password'] =self.error_class(['Passwords do not match.'])
+			self._errors['new_password'] =self.error_class(['Les mots de passe ne correspondent pas.'])
 		return self.cleaned_data
 
 class EditProfileForm(forms.ModelForm):
