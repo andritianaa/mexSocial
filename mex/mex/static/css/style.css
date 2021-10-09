@@ -3,6 +3,7 @@
 
 
 :root {
+    --borad: 4px;
     --primaryColor: #1e88e5;
     --secondaryColor: #1565c0;
     --white: #f0f0f0;
@@ -108,4 +109,34 @@
 }
 .resultat_profil{
     margin:2rem;
+}
+.grand_titre{
+    font-family: var(--largeFont);
+    margin: 1rem;
+    color: var(--primaryColor);
+}
+.center_content{
+    display: flex;
+    justify-content: center;
+}
+.input_and_label{
+    display: flex;
+    flex-direction: column;
+    margin: 1rem;
+}
+.input_label{
+    margin-bottom: 0.5rem;
+}
+.center_form{
+    background-color: var(--white);
+    border-radius: var(--borad);
+    padding: 1rem;
+    justify-content: center;
+}
+.body{
+    background-color: #1565c0;
+    width: 100vw;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
 }

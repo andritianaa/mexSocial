@@ -24,13 +24,16 @@ def UniqueUser(value):
 class SignupForm(forms.ModelForm):
 	username = forms.CharField(widget=forms.TextInput(), max_length=30, required=True,)
 	email = forms.CharField(widget=forms.EmailInput(), max_length=100, required=True,)
+	first_name = forms.CharField(widget=forms.TextInput(), max_length=50, required=False)
+	last_name = forms.CharField(widget=forms.TextInput(), max_length=50, required=False)
+	location = forms.CharField(widget=forms.TextInput(), max_length=25, required=False)
+	url = forms.URLField(widget=forms.TextInput(), max_length=60, required=False)
 	password = forms.CharField(widget=forms.PasswordInput())
 	confirm_password = forms.CharField(widget=forms.PasswordInput(), required=True, label="Confirm your password.")
 
 	class Meta:
-
 		model = User
-		fields = ('username', 'email', 'password')
+		fields = ('username', 'email','first_name','last_name','location','url', 'password')
 
 	def __init__(self, *args, **kwargs):
 		super(SignupForm, self).__init__(*args, **kwargs)
@@ -66,14 +69,14 @@ class ChangePasswordForm(forms.ModelForm):
 		confirm_password = self.cleaned_data.get('confirm_password')
 		user = User.objects.get(pk=id)
 		if not user.check_password(old_password):
-			self._errors['old_password'] =self.error_class(["L'ancien mot de passe n'est pas valide"])
+			self._errors["Erreur ancien mot de passe"] =self.error_class(["L'ancien mot de passe n'est pas valide"])
 		if new_password != confirm_password:
-			self._errors['new_password'] =self.error_class(['Les mots de passe ne correspondent pas.'])
+			self._errors['Erreur de correspondance'] =self.error_class(['Les mots de passe ne correspondent pas.'])
 		return self.cleaned_data
 
 class EditProfileForm(forms.ModelForm):
 	picture = forms.ImageField(required=False)
-	first_name = forms.CharField(widget=forms.TextInput(), max_length=50, required=False)
+	first_name = forms.CharField(widget=forms.TextInput(), max_length=50, required=False )
 	last_name = forms.CharField(widget=forms.TextInput(), max_length=50, required=False)
 	location = forms.CharField(widget=forms.TextInput(), max_length=25, required=False)
 	url = forms.URLField(widget=forms.TextInput(), max_length=60, required=False)

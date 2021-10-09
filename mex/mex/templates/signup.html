@@ -6,73 +6,70 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Créer un compte</title>
-  
   <link rel="shortcut icon" href="{% static 'img/colorLogo.png'%}" type="image/x-icon">
   <link rel="stylesheet" href="{% static 'css/style.css' %}">
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
-<body>
-  <section class="section">
-    <div class="container">
-      <div class="columns is-mobile has-text-centered">
-        <div class="column is-half is-offset-one-quarter">
-          <div class="card">
-            <div class="card-content">
-              <form method="post" action="" role="form">
-                {% csrf_token %}
-                <h3 class="title is-3">Créer un compte</h3>
 
-                <div class="field">
-                  <p class="control has-icons-left">
-                    <label class="label is-medium">Nom d'utilisateur</label>
-                    {{ form.username }}
-                    <span class="icon is-small is-left">
-                      <i class="fas fa-lock"></i>
-                    </span>
-                  </p>
-                </div>
-                <div class="field">
-                  <p class="control has-icons-left">
-                    <label class="label is-medium">Email</label>
-                    {{ form.email }}
-                    <span class="icon is-small is-left">
-                      <i class="fas fa-lock"></i>
-                    </span>
-                  </p>
-                </div>
-                <div class="field">
-                  <p class="control has-icons-left">
-                    <label class="label is-medium">Mot de passe</label>
-                    {{ form.password }}
-                    <span class="icon is-small is-left">
-                      <i class="fas fa-lock"></i>
-                    </span>
-                  </p>
-                </div>
-                <div class="field">
-                  <p class="control has-icons-left">
-                    <label class="label is-medium">Confirmer le mot de passe</label>
-                    {{ form.confirm_password }}
-                    <span class="icon is-small is-left">
-                      <i class="fas fa-lock"></i>
-                    </span>
-                  </p>
-                </div>
-                <div class="row">
-                  <div class="col s12">
-                    <span style="color: red; font-weight: bold;">{{ form.errors }}</span>
-                  </div>
-                </div>
-                <div class="field">
-                  <p class="control">
-                    <button type="submit" name="action" class="button is-success">
-                      Créer
-                    </button>
-                  </p>
-                </div>
-            </div>
-          </div>
-        </div>
-  </section>
+<body class="body">
+  <div class="container center_content">
+    <form class="center_form" method="post" action="" role="form">
+      {% csrf_token %}
+      <h3 class="grand_titre">Créer un compte</h3>
+      <div class="input_and_label">
+        <!-- username  -->
+        <label class="input_label">Nom d'utilisateur</label>
+        {{ form.username }}
+      </div>
+
+      <!-- prenom  -->
+      <div class="input_and_label">
+        <label class="input_label">Prénom</label>
+        {{ form.first_name }}
+      </div>
+
+      <!-- nom -->
+      <div class="input_and_label">
+        <label class="input_label">Nom</label>
+        {{ form.last_name }}
+      </div>
+
+      <!-- adresse -->
+      <div class="input_and_label">
+        <label class="input_label">Adresse</label>
+        {{ form.location }}
+      </div>
+
+      <!-- url -->
+      <div class="input_and_label">
+        <label class="input_label">Lien</label>
+        {{ form.url }}
+      </div>
+
+      <!-- mail -->
+      <div class="input_and_label">
+        <label class="input_label">Email</label>
+        {{ form.email }}
+      </div>
+
+      <!-- mdp -->
+      <div class="input_and_label">
+        <label class="input_label">Mot de passe</label>
+        {{ form.password }}
+      </div>
+
+      <!-- confirmation mdp -->
+      <div class="input_and_label">
+        <label class="input_label">Confirmer le mot de passe</label>
+        {{ form.confirm_password }}
+      </div>
+      <div class="row">
+        <span style="color: red; font-weight: bold;">{{ form.errors }}</span>
+      </div>
+      <div class="field">
+        <button type="submit" name="action" class="boutton primaryColor">Créer</button>
+      </div>
+    </form>
+  </div>
 </body>
+
 </html>
