@@ -1,20 +1,16 @@
-from django.shortcuts import render, redirect, get_object_or_404
-from authy.forms import SignupForm, ChangePasswordForm, EditProfileForm
-from django.contrib.auth.models import User
-
+from django.template 				import loader
+from authy.models    				import Profile
+from django.db    	 				import transaction
+from django.urls     				import reverse, resolve
+from django.contrib.auth.models 	import User
+from django.core.paginator 			import Paginator
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth import update_session_auth_hash
-
-from authy.models import Profile
-from post.models import Post, Follow, Stream
-from django.db import transaction
-from django.template import loader
-from django.http import HttpResponse, HttpResponseRedirect
-from django.urls import reverse
-
-from django.core.paginator import Paginator
-
-from django.urls import resolve
+from post.models 					import Post, Follow, Stream
+from django.contrib.auth 			import update_session_auth_hash
+from django.http 					import HttpResponse, HttpResponseRedirect
+from django.shortcuts 				import render, redirect, get_object_or_404
+from authy.forms 					import SignupForm, ChangePasswordForm, EditProfileForm, EditPictureForm
+from authy.forms 					import EditNameForm, EditProfile_infoForm, EditLocationForm,EditUrlForm
 
 # Create your views here.
 def UserProfile(request, username):
@@ -24,10 +20,9 @@ def UserProfile(request, username):
 	
 	if url_name == 'profile':
 		posts = Post.objects.filter(user=user).order_by('-posted')
-
 	else:
 		posts = profile.favorites.all()
-
+  
 	#Profile info box
 	posts_count = Post.objects.filter(user=user).count()
 	following_count = Follow.objects.filter(follower=user).count()
@@ -127,31 +122,7 @@ def PasswordChangeDone(request):
 	return render(request, 'change_password_done.html')
 
 
-@login_required
-def EditProfile(request):
-	user = request.user.id
-	profile = Profile.objects.get(user__id=user)
-	BASE_WIDTH = 400
 
-	if request.method == 'POST':
-		form = EditProfileForm(request.POST, request.FILES)
-		if form.is_valid():
-			profile.picture = form.cleaned_data.get('picture')
-			profile.first_name = form.cleaned_data.get('first_name')
-			profile.last_name = form.cleaned_data.get('last_name')
-			profile.location = form.cleaned_data.get('location')
-			profile.url = form.cleaned_data.get('url')
-			profile.profile_info = form.cleaned_data.get('profile_info')
-			profile.save()
-			return redirect('index')
-	else:
-		form = EditProfileForm()
-
-	context = {
-		'form':form,
-	}
-
-	return render(request, 'edit_profile.html', context)
 
 
 @login_required
@@ -175,3 +146,127 @@ def follow(request, username, option):
 		return HttpResponseRedirect(reverse('profile', args=[username]))
 	except User.DoesNotExist:
 		return HttpResponseRedirect(reverse('profile', args=[username]))
+
+
+
+# edit profil 
+
+
+
+@login_required
+def EditProfile(request):
+	user = request.user.id
+	profile = Profile.objects.get(user__id=user)
+	BASE_WIDTH = 400
+
+	if request.method == 'POST':
+		form = EditProfileForm(request.POST, request.FILES)
+		if form.is_valid():
+			profile.picture = form.cleaned_data.get('picture')
+			profile.first_name = form.cleaned_data.get('first_name')
+			profile.last_name = form.cleaned_data.get('last_name')
+			profile.location = form.cleaned_data.get('location')
+			profile.url = form.cleaned_data.get('url')
+			profile.profile_info = form.cleaned_data.get('profile_info')
+			profile.save()
+			return redirect('index')
+	else:
+		form = EditProfileForm()
+	context = {
+		'form':form,
+	}
+ 
+	return render(request, 'edit/edit_profile.html', context)
+
+@login_required
+def EditPicture(request):
+	user = request.user.id
+	profile = Profile.objects.get(user__id=user)
+	BASE_WIDTH = 400
+	if request.method == 'POST':
+		form = EditProfileForm(request.POST, request.FILES)
+		if form.is_valid():
+			profile.picture = form.cleaned_data.get('picture')
+			profile.save()
+			return render(request, 'edit/edit_profile.html')
+	else:
+		form = EditPictureForm()
+	context = {
+		'form':form,
+	}
+	return render(request, 'edit/edit_profile_picture.html', context)
+
+
+@login_required
+def EditName(request):
+	user = request.user.id
+	profile = Profile.objects.get(user__id=user)
+	BASE_WIDTH = 400
+	if request.method == 'POST':
+		form = EditProfileForm(request.POST, request.FILES)
+		if form.is_valid():
+			profile.first_name = form.cleaned_data.get('first_name')
+			profile.last_name = form.cleaned_data.get('last_name')
+			profile.save()
+			return render(request, 'edit/edit_profile.html')
+	else:
+		form = EditNameForm()
+	context = {
+		'form':form,
+	}
+	return render(request, 'edit/edit_profile_name.html', context)
+
+@login_required
+def EditLocation(request):
+	user = request.user.id
+	profile = Profile.objects.get(user__id=user)
+	BASE_WIDTH = 400
+	if request.method == 'POST':
+		form = EditProfileForm(request.POST, request.FILES)
+		if form.is_valid():
+			profile.location = form.cleaned_data.get('location')
+			profile.save()
+			return render(request, 'edit/edit_profile.html')
+	else:
+		form = EditLocationForm()
+	context = {
+		'form':form,
+	}
+	return render(request, 'edit/edit_profile_location.html', context)
+
+
+@login_required
+def EditUrl(request):
+	user = request.user.id
+	profile = Profile.objects.get(user__id=user)
+	BASE_WIDTH = 400
+	if request.method == 'POST':
+		form = EditProfileForm(request.POST, request.FILES)
+		if form.is_valid():
+			profile.url = form.cleaned_data.get('url')
+			profile.save()
+			return render(request, 'edit/edit_profile.html')
+	else:
+		form = EditUrlForm()
+	context = {
+		'form':form,
+	}
+	return render(request, 'edit/edit_profile_url.html', context)
+
+@login_required
+def EditProfile_info(request):
+	user = request.user.id
+	profile = Profile.objects.get(user__id=user)
+	BASE_WIDTH = 400
+	if request.method == 'POST':
+		form = EditProfileForm(request.POST, request.FILES)
+		if form.is_valid():
+			profile.profile_info = form.cleaned_data.get('profile_info')
+			profile.save()
+			return render(request, 'edit/edit_profile.html')
+	else:
+		form = EditProfile_infoForm()
+	context = {
+		'form':form,
+	}
+	return render(request, 'edit/edit_profile_info.html', context)

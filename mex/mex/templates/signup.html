@@ -15,58 +15,60 @@
     <form class="center_form" method="post" action="" role="form">
       {% csrf_token %}
       <h3 class="grand_titre">Créer un compte</h3>
-      <div class="input_and_label">
-        <!-- username  -->
-        <label class="input_label">Nom d'utilisateur</label>
-        {{ form.username }}
+      <!-- username -->
+      <div class="input-box">
+        <input name="username" required type="{{ form.username }}">
+        <label for="username"><strong>Nom d'utilisateur</strong></label>
       </div>
 
       <!-- prenom  -->
-      <div class="input_and_label">
-        <label class="input_label">Prénom</label>
-        {{ form.first_name }}
+      <div class="input-box">
+        <input name="first_name" required type="{{ form.first_name }}">
+        <label for="first_name"><strong>Prénom</strong></label>
       </div>
 
       <!-- nom -->
-      <div class="input_and_label">
-        <label class="input_label">Nom</label>
-        {{ form.last_name }}
+      <div class="input-box">
+        <input name="last_name" required type="{{ form.last_name }}">
+        <label for="last_name"><strong>Nom</strong></label>
       </div>
 
       <!-- adresse -->
-      <div class="input_and_label">
-        <label class="input_label">Adresse</label>
-        {{ form.location }}
+      <div class="input-box">
+        <input name="location" required type="{{ form.location }}">
+        <label for="location"><strong>Adresse</strong></label>
       </div>
 
       <!-- url -->
-      <div class="input_and_label">
-        <label class="input_label">Lien</label>
-        {{ form.url }}
+      <div class="input-box">
+        <input name="url" required type="{{ form.url }}">
+        <label for="url"><strong>Site internet</strong></label>
       </div>
 
       <!-- mail -->
-      <div class="input_and_label">
-        <label class="input_label">Email</label>
-        {{ form.email }}
+      <div class="input-box">
+        <input name="mail" required type="{{ form.mail }}">
+        <label for="mail"><strong>Adresse mail</strong></label>
       </div>
 
       <!-- mdp -->
-      <div class="input_and_label">
-        <label class="input_label">Mot de passe</label>
-        {{ form.password }}
+      <div class="input-box">
+        <input name="password" required type="{{ form.password }}">
+        <label for="password"><strong>Mot de passe</strong></label>
       </div>
 
       <!-- confirmation mdp -->
-      <div class="input_and_label">
-        <label class="input_label">Confirmer le mot de passe</label>
-        {{ form.confirm_password }}
+      <div class="input-box">
+        <input name="confirm_password" required type="{{ form.confirm_password }}">
+        <label for="confirm_password"><strong>Confirmer le mot de passe</strong></label>
       </div>
+
       <div class="row">
         <span style="color: red; font-weight: bold;">{{ form.errors }}</span>
       </div>
-      <div class="field">
+      <div class="duo">
         <button type="submit" name="action" class="boutton primaryColor">Créer</button>
+        <a class="cancel" href="{% url 'profile' request.user %}">Annuler</a>
       </div>
     </form>
   </div>

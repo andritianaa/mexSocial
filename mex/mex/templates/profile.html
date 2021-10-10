@@ -8,7 +8,7 @@
       {% if profile.picture %}
       <img class="is-rounded" src="{{ profile.picture.url }}">
       {% else %}
-      <img class="is-rounded" src="https://bulma.io/images/placeholders/256x256.png">
+      <img class="is-rounded" src="{% static 'img/no_picture.png'%}">
       {% endif %}
     </figure>
   </div>
@@ -61,7 +61,7 @@
           <a href="{% url 'profile' profile.user %}">Publications</a>
         </li>
         <li class="{% if url_name == 'profilefavorites' %}is-active{% endif %}">
-          <a href="{% url 'profilefavorites' profile.user %}"Enregistrements</a>
+          <a href="{% url 'profilefavorites' profile.user %}">Enregistrements</a>
         </li>
       </ul>
     </div>
@@ -69,7 +69,7 @@
       {% for post in posts %}
       <div class="column is-one-quarter">
         <div class="box">
-          {% if post.content.first.file.name|slice:"-3:" == 'jpg' or post_item.content.first.file.name|slice:"-3:" == 'png' or post_item.content.first.file.name|slice:"-4:" == 'jpeg' %}
+          {% if post.content.first.file.name|slice:"-3:" == 'jpg' or post_item.content.first.file.name|slice:"-3:" == 'Jpeg' or post_item.content.first.file.name|slice:"-3:" == 'Jpg' or post_item.content.first.file.name|slice:"-3:" == 'JPG' or post_item.content.first.file.name|slice:"-3:" == 'PNG' or post_item.content.first.file.name|slice:"-3:" == 'png' or post_item.content.first.file.name|slice:"-4:" == 'jpeg'%}
           <figure class="image is-4by3">
             <a href="{{ post.get_absolute_url }}">
               <img src="{{ post.content.first.file.url }}" alt="Placeholder image">

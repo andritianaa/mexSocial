@@ -1,9 +1,19 @@
 from django.urls import path
 from authy.views import UserProfile, Signup, PasswordChange, PasswordChangeDone, EditProfile
-from django.contrib.auth import views as authViews 
+from django.contrib.auth import views as authViews
+
+from authy.views import EditPicture, EditName, EditLocation, EditUrl, EditProfile_info
+
+
 
 urlpatterns = [
+    
     path('profile/edit', EditProfile, name='edit-profile'),
+    path('profile/editPicture', EditPicture, name='edit-picture'),
+    path('profile/editName', EditName, name='edit-name'),
+    path('profile/editLocation', EditLocation, name='edit-location'),
+    path('profile/editUrl', EditUrl, name='edit-url'),
+    path('profile/editProfile_info', EditProfile_info, name='edit-profile-info'),
    	path('signup/', Signup, name='signup'),
    	path('login/', authViews.LoginView.as_view(template_name='login.html'), name='login'),
    	path('logout/', authViews.LogoutView.as_view(), {'next_page' : 'index'}, name='logout'),

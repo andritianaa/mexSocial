@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+{% csrf_token %}
+<div class="body">
+  <br><br><br>
+  <div class="container center_content">
+    <div class="center_form">
+      <div class="duo">
+        <p class="smallTitle"> Photo de profil</p>
+      <a class="modifier" href="{% url 'edit-picture' %}"> Modifier</a>
+    </div>
+    <div class="duo">
+      <p class="smallTitle">Nom</p>
+      <p>{{ request.user.profile.first_name }} {{ request.user.profile.last_name }} </p>
+      <a class="modifier" href="{% url 'edit-name' %}"> Modifier</a>
+    </div>
+      <div class="duo">
+        <p class="smallTitle">Adresse</p>
+        <p>{{ request.user.profile.location }}</p>
+        <a class="modifier" href="{% url 'edit-location' %}"> Modifier</a>
+      </div>
+      <div class="duo">
+        <p class="smallTitle">Site</p>
+        <p>{{ request.user.profile.url }}</p>
+        <a class="modifier" href="{% url 'edit-url' %}"> Modifier</a>
+      </div>
+      
+      <div class="duo">
+        <p class="smallTitle">bio</p>
+        <p>{{ request.user.profile.profile_info }}</p>
+        <a class="modifier" href="{% url 'edit-profile-info' %}"> Modifier</a>
+      </div>
+      
+      <div class="duo">
+        <p class="smallTitle">Adresse mail</p>
+        <p>{{ request.user.email }}</p>
+      </div>
+      <div class="duo">
+        <a class="primaryColor boutton" href="{% url 'profile' request.user %}">terminer</a>
+        <a class="cancel" href="{% url 'profile' request.user %}">annuler</a>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

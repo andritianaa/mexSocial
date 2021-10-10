@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="body">
+  <br><br><br>
+  <div class="container center_content">
+    <form class="center_form" method="post" enctype="multipart/form-data" action="" role="form">
+      {% csrf_token %}
+      <div class="input-box">
+        <input name="url" required type="{{ form.url }}">
+        <label for="url"><strong>Site web</strong></label>
+      </div>
+
+      <span class="error">{{ form.errors }}</span>
+      <div class="submit_cancel">
+        <button class="boutton primaryColor" type="submit" value="login">Modifier</button>
+        <a class="cancel" href="{% url 'profile' request.user %}">Annuler</a>
+      </div>
+    </form>
+  </div>
+</div>
+{% endblock %}

@@ -1,6 +1,7 @@
 from django import forms
 from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
+from django.forms import fields
 from authy.models import Profile
 
 def ForbiddenUsers(value):
@@ -22,19 +23,19 @@ def UniqueUser(value):
 		raise ValidationError("Ce nom d'utilisateur est déjà utilisé")
 
 class SignupForm(forms.ModelForm):
-	username = forms.CharField(widget=forms.TextInput(), max_length=30, required=True,)
-	email = forms.CharField(widget=forms.EmailInput(), max_length=100, required=True,)
-	first_name = forms.CharField(widget=forms.TextInput(), max_length=50, required=False)
-	last_name = forms.CharField(widget=forms.TextInput(), max_length=50, required=False)
-	location = forms.CharField(widget=forms.TextInput(), max_length=25, required=False)
-	url = forms.URLField(widget=forms.TextInput(), max_length=60, required=False)
+	username = forms.CharField(widget=forms.TextInput(attrs={'class': 'input-text'}), max_length=30, required=True,)
+	email   = forms.CharField(widget=forms.EmailInput(), max_length=100, required=False)
+	first_name = forms.CharField(widget=forms.TextInput(attrs={'class': 'input-text'}), max_length=50, required=False)
+	last_name = forms.CharField(widget=forms.TextInput(attrs={'class': 'input-text'}), max_length=50, required=False)
+	location = forms.CharField(widget=forms.TextInput(attrs={'class': 'input-text'}), max_length=25, required=False)
+	url = forms.URLField(widget=forms.TextInput(attrs={'class': 'input-text'}), max_length=60, required=False)
 	password = forms.CharField(widget=forms.PasswordInput())
 	confirm_password = forms.CharField(widget=forms.PasswordInput(), required=True, label="Confirm your password.")
 
 	class Meta:
 		model = User
-		fields = ('username', 'email','first_name','last_name','location','url', 'password')
-
+		fields = ('username', 'email', 'password')
+  
 	def __init__(self, *args, **kwargs):
 		super(SignupForm, self).__init__(*args, **kwargs)
 		self.fields['username'].validators.append(ForbiddenUsers)
@@ -53,9 +54,9 @@ class SignupForm(forms.ModelForm):
 
 class ChangePasswordForm(forms.ModelForm):
 	id = forms.CharField(widget=forms.HiddenInput())
-	old_password = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'input is-medium'}), label="Old password", required=True)
-	new_password = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'input is-medium'}), label="New password", required=True)
-	confirm_password = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'input is-medium'}), label="Confirm new password", required=True)
+	old_password = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'input-text'}), label="Old password", required=True)
+	new_password = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'input-text'}), label="New password", required=True)
+	confirm_password = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'input-text'}), label="Confirm new password", required=True)
 
 	class Meta:
 		model = User
@@ -76,12 +77,50 @@ class ChangePasswordForm(forms.ModelForm):
 
 class EditProfileForm(forms.ModelForm):
 	picture = forms.ImageField(required=False)
-	first_name = forms.CharField(widget=forms.TextInput(), max_length=50, required=False )
-	last_name = forms.CharField(widget=forms.TextInput(), max_length=50, required=False)
-	location = forms.CharField(widget=forms.TextInput(), max_length=25, required=False)
-	url = forms.URLField(widget=forms.TextInput(), max_length=60, required=False)
-	profile_info = forms.CharField(widget=forms.TextInput(), max_length=260, required=False)
+	first_name = forms.CharField(widget=forms.TextInput(attrs={'class': 'input-text'}), max_length=50, required=False )
+	last_name = forms.CharField(widget=forms.TextInput(attrs={'class': 'input-text'}), max_length=50, required=False)
+	location = forms.CharField(widget=forms.TextInput(attrs={'class': 'input-text'}), max_length=25, required=False)
+	url = forms.URLField(widget=forms.TextInput(attrs={'class': 'input-text'}), max_length=60, required=False)
+	profile_info = forms.CharField(widget=forms.TextInput(attrs={'class': 'input-text'}), max_length=260, required=False)
 
 	class Meta:
 		model = Profile
 		fields = ('picture', 'first_name', 'last_name', 'location', 'url', 'profile_info')
+  
+class EditPictureForm(forms.ModelForm):
+	picture = forms.ImageField(required=False)
+
+	class Meta:
+		model = Profile
+		fields = ('picture',)
+
+class EditNameForm(forms.ModelForm):
+	first_name = forms.CharField(widget=forms.TextInput(attrs={'class': 'input-text'}), max_length=50, required=False )
+	last_name = forms.CharField(widget=forms.TextInput(attrs={'class': 'input-text'}), max_length=50, required=False)
+
+	class Meta:
+		model = Profile
+		fields = ('first_name', 'last_name')
+  
+class EditLocationForm(forms.ModelForm):
+	location = forms.CharField(widget=forms.TextInput(attrs={'class': 'input-text'}), max_length=25, required=False)
+
+	class Meta:
+		model = Profile
+		fields = ('location',)
+  
+  
+class EditUrlForm(forms.ModelForm):
+	url = forms.URLField(widget=forms.TextInput(attrs={'class': 'input-text'}), max_length=60, required=False)
+
+	class Meta:
+		model = Profile
+		fields = ('url',)
+  
+class EditProfile_infoForm(forms.ModelForm):
+	profile_info = forms.CharField(widget=forms.TextInput(attrs={'class': 'input-text'}), max_length=260, required=False)
+
+	class Meta:
+		model = Profile
+		fields = ('profile_info',)
+  
