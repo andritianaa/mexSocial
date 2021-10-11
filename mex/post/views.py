@@ -4,7 +4,6 @@ from django.template import loader
 
 from post.models import Stream, Post, Tag, Likes, PostFileContent
 from post.forms import NewPostForm
-from stories.models import Story, StoryStream
 
 from comment.models import Comment
 from comment.forms import CommentForm
@@ -22,7 +21,6 @@ def index(request):
 	user = request.user
 	posts = Stream.objects.filter(user=user)
 
-	stories = StoryStream.objects.filter(user=user)
 
 
 	group_ids = []
@@ -36,7 +34,6 @@ def index(request):
 
 	context = {
 		'post_items': post_items,
-		'stories': stories,
 
 	}
 
@@ -47,8 +44,6 @@ def PostDetails(request, post_id):
 	user = request.user
 	profile = Profile.objects.get(user=user)
 	favorited = False
-
-	#comment
 	comments = Comment.objects.filter(post=post).order_by('date')
 	
 	if request.user.is_authenticated:

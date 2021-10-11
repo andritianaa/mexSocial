@@ -32,6 +32,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'django.contrib.admin',
+    'django_celery_beat',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -43,8 +44,6 @@ INSTALLED_APPS = [
     'comment',
     'direct',
     'notifications',
-    'stories',
-    'django_celery_beat',
 
 ]
 
