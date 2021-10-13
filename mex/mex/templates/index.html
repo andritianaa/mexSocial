@@ -29,7 +29,7 @@
               {% if post_item.user.profile.picture %}
               <img src="{{ post_item.user.profile.picture.url }}" alt="Placeholder image">
               {% else %}
-              <img src="https://bulma.io/images/placeholders/96x96.png" alt="Placeholder image">
+              <img src="{% static 'img/no_picture.png'%}" alt="Placeholder image">
               {% endif %}
             </figure>
           </div>

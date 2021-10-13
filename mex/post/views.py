@@ -52,8 +52,7 @@ def PostDetails(request, post_id):
 
 		if profile.favorites.filter(id=post_id).exists():
 			favorited = True
-
-	#Comments Form
+	# form commentaire
 	if request.method == 'POST':
 		form = CommentForm(request.POST)
 		if form.is_valid():
