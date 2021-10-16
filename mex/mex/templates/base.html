@@ -12,31 +12,34 @@
 </head>
 
 <body>
-  <header>
-    <a href="{% url 'index' %}" class="small_logo"><img src="{%static 'img/colorLogo.png' %}" alt=""><span>ex</span></a>
-    <div class="menu-toggle"></div>
-    <nav class="nav-list-item">
-      <ul>
-        <li><a id="actu" class="active" href="{% url 'index' %}">Fil d'actualité</a></li>
-        <li><a id="search" href="{% url 'usersearch' %}">Rechercher</a></li>
-        <li><a id="notification" href="{% url 'show-notifications' %}">Notifications
-            {% if count_notifications %}
-            <span class="badge">{{ count_notifications }}</span>
-            {% endif %}
-          </a></li>
-        <li><a id="message" href="{% url 'inbox' %}">Messages
-            {% if directs_count %}
-            <span class="badge">{{ directs_count }}</span>
-            {% endif %}
-          </a></li>
-        <li><a id="publier" href="{% url 'newpost' %}">Publier</a></li>
-        <li><a id="profile" href="{% url 'profile' request.user %}">{{ request.user }}</a></li>
-        <li><a id="password" href="{% url 'change_password' %}">Password</a></li>
-        <li><a id="logout" href="{% url 'logout' %}">Deconnexion</a></li>
-      </ul>
-    </nav>
-    <div class="clearfix"></div>
-  </header>
+    <header class=" glass_view">
+      <a href="{% url 'index' %}" class="small_logo"><img src="{%static 'img/colorLogo.png' %}" alt=""><span>
+        </span></a>
+      <div class="menu-toggle"></div>
+      <nav class="nav-list-item">
+
+        <ul>
+          <li><a id="actu" class="activeNav" href="{% url 'index' %}">Fil d'actualité</a></li>
+          <li><a id="search" href="{% url 'usersearch' %}">Rechercher</a></li>
+          <li><a id="notification" href="{% url 'show-notifications' %}">Notifications
+              {% if count_notifications %}
+              <span class="badge">{{ count_notifications }}</span>
+              {% endif %}
+            </a></li>
+          <li><a id="message" href="{% url 'inbox' %}">Messages
+              {% if directs_count %}
+              <span class="badge">{{ directs_count }}</span>
+              {% endif %}
+            </a></li>
+          <li><a id="publier" href="{% url 'newpost' %}">Publier</a></li>
+          <li><a id="profile" href="{% url 'profile' request.user %}">{{ request.user }}</a></li>
+          <li><a id="password" href="{% url 'change_password' %}">Password</a></li>
+          <li><a id="logout" href="{% url 'logout' %}">Deconnexion</a></li>
+        </ul>
+      </nav>
+      <div class="clearfix"></div>
+    </header>
+  </div>
   {% block banner %}
   {% endblock %}
   <section class="section">
@@ -52,11 +55,12 @@
 <script src="{% static 'js/jquery-3.3.1.js' %}"></script>
 <script src="{% static 'js/slider.js' %}"></script>
 <script type="text/javascript">
-  $(document) .ready(function(){
-    $('.menu-toggle').click(function  (){
+  $(document).ready(function () {
+    $('.menu-toggle').click(function () {
       $('.menu-toggle').toggleClass('active')
       $('.nav-list-item').toggleClass('active')
     })
   })
 </script>
+
 </html>
