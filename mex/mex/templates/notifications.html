@@ -2,6 +2,7 @@
 {% load static %}
 {% load humanize %}
 {% block content %}
+
 <div class="columns is-mobile is-centered">
   <div class="column is-half">
     {% for notification in notifications %}
@@ -10,28 +11,24 @@
       <a href="{% url 'delete-notification' notification.id %}" class="delete"></a>
       <article class="media">
         <figure class="media-left">
-          <p class="image is-64x64">
+          <p class="image is-80x80">
             {% if notification.sender.profile.picture %}
-            <img src="{{ notification.sender.profile.picture.url }}" alt="Placeholder image">
+            <img class="is-rounded" src="{{ notification.sender.profile.picture.url }}" alt="Placeholder image">
             {% else %}
             <img src="{% static 'img/no_picture.png'%}" alt="Placeholder image">
             {% endif %}
           </p>
+          
         </figure>
         <div class="media-content">
           <div class="content">
-            <strong>{{ notification.sender.profile.first_name }} {{ notification.sender.profile.last_name }}</strong>
-            <small>@{{ notification.sender.username }}</small>
-            >
-            A commenté:
-            <p>{{ notification.text_preview }}</p>
-            <strong><small>{{ notification.date|naturaltime }}</small></strong>
+            <strong>{{ notification.sender.username }}</strong>
+            <br>
+            <p>{{ notification.sender.profile.first_name }} {{ notification.sender.profile.last_name }}
+            A commenté:</p>
+            <p>{{ notification.text_preview }}...</p>
+            <p> <i class="fas fa-comment"></i> <b>{{ notification.date|naturaltime }}</b></p>
           </div>
-        </div>
-        <div class="media-right">
-          <figure class="image is-128x128">
-            <img src="{{ notification.post.picture.url }}">
-          </figure>
         </div>
       </article>
     </div>
@@ -42,9 +39,9 @@
 
       <article class="media">
         <figure class="media-left">
-          <p class="image is-64x64">
+          <p class="image is-80x80">
             {% if notification.sender.profile.picture %}
-            <img src="{{ notification.sender.profile.picture.url }}" alt="Placeholder image">
+            <img class="is-rounded" src="{{ notification.sender.profile.picture.url }}" alt="Placeholder image">
             {% else %}
             <img src="{% static 'img/no_picture.png'%}" alt="Placeholder image">
             {% endif %}
@@ -52,11 +49,11 @@
         </figure>
         <div class="media-content">
           <div class="content">
-            <strong>{{ notification.sender.profile.first_name }} {{ notification.sender.profile.last_name }}</strong>
-            <small>@{{ notification.sender.username }}</small>
-            >
-            <p><i class="material-icons">person_add</i> vous suit.</p>
-            <strong><small>{{ notification.date|naturaltime}}</small></strong>
+
+            <strong>{{ notification.sender.username }}</strong>
+            <br>
+            <p>{{ notification.sender.profile.first_name }} {{ notification.sender.profile.last_name }} vous suit.</p> 
+            <p><i class="fas fa-user-plus"></i>  <b>{{ notification.date|naturaltime}}</b></p>
           </div>
         </div>
       </article>
@@ -68,9 +65,9 @@
       <a href="{% url 'delete-notification' notification.id %}" class="delete"></a>
       <article class="media">
         <figure class="media-left">
-          <p class="image is-64x64">
+          <p class="image is-80x80">
             {% if notification.sender.profile.picture %}
-            <img src="{{ notification.sender.profile.picture.url }}" alt="Placeholder image">
+            <img class="is-rounded" src="{{ notification.sender.profile.picture.url }}" alt="Placeholder image">
             {% else %}
             <img src="{% static 'img/no_picture.png'%}" alt="Placeholder image">
             {% endif %}
@@ -78,17 +75,11 @@
         </figure>
         <div class="media-content">
           <div class="content">
-            <strong>{{ notification.sender.profile.first_name }} {{ notification.sender.profile.last_name }}</strong>
-            <small>@{{ notification.sender.username }}</small>
-            >
-            <p><i class="material-icons">thumb_up</i> aime votre publication.</p>
-            <strong><small>{{ notification.date|naturaltime }}</small></strong>
+            <strong>{{ notification.sender.username }}</strong>
+            <br>
+            <p>{{ notification.sender.profile.first_name }} {{ notification.sender.profile.last_name }} aime votre publication.</p>
+            <p><i class="fas fa-thumbs-up"></i><b style="margin-left: 0.6rem;">{{ notification.date|naturaltime }}</b></p>
           </div>
-        </div>
-        <div class="media-right">
-          <figure class="image is-128x128">
-            <img src="{{ notification.post.picture.url }}">
-          </figure>
         </div>
       </article>
     </div>
