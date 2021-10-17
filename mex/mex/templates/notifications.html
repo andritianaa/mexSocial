@@ -2,7 +2,6 @@
 {% load static %}
 {% load humanize %}
 {% block content %}
-<br><br><br>
 <div class="columns is-mobile is-centered">
   <div class="column is-half">
     {% for notification in notifications %}
@@ -23,7 +22,7 @@
           <div class="content">
             <strong>{{ notification.sender.profile.first_name }} {{ notification.sender.profile.last_name }}</strong>
             <small>@{{ notification.sender.username }}</small>
-            <br>
+            >
             A commenté:
             <p>{{ notification.text_preview }}</p>
             <strong><small>{{ notification.date|naturaltime }}</small></strong>
@@ -55,7 +54,7 @@
           <div class="content">
             <strong>{{ notification.sender.profile.first_name }} {{ notification.sender.profile.last_name }}</strong>
             <small>@{{ notification.sender.username }}</small>
-            <br>
+            >
             <p><i class="material-icons">person_add</i> vous suit.</p>
             <strong><small>{{ notification.date|naturaltime}}</small></strong>
           </div>
@@ -81,7 +80,7 @@
           <div class="content">
             <strong>{{ notification.sender.profile.first_name }} {{ notification.sender.profile.last_name }}</strong>
             <small>@{{ notification.sender.username }}</small>
-            <br>
+            >
             <p><i class="material-icons">thumb_up</i> aime votre publication.</p>
             <strong><small>{{ notification.date|naturaltime }}</small></strong>
           </div>

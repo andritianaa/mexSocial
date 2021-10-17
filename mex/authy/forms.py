@@ -25,12 +25,8 @@ def UniqueUser(value):
 class SignupForm(forms.ModelForm):
 	username = forms.CharField(widget=forms.TextInput(attrs={'class': 'input-text'}), max_length=30, required=True,)
 	email   = forms.CharField(widget=forms.EmailInput(), max_length=100, required=False)
-	first_name = forms.CharField(widget=forms.TextInput(attrs={'class': 'input-text'}), max_length=50, required=False)
-	last_name = forms.CharField(widget=forms.TextInput(attrs={'class': 'input-text'}), max_length=50, required=False)
-	location = forms.CharField(widget=forms.TextInput(attrs={'class': 'input-text'}), max_length=25, required=False)
-	url = forms.URLField(widget=forms.TextInput(attrs={'class': 'input-text'}), max_length=60, required=False)
-	password = forms.CharField(widget=forms.PasswordInput())
-	confirm_password = forms.CharField(widget=forms.PasswordInput(), required=True, label="Confirm your password.")
+	password = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'input-text'}))
+	confirm_password = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'input-text'}), required=True, label="Confirmation de mot de passe")
 
 	class Meta:
 		model = User
