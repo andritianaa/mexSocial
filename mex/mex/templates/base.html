@@ -6,12 +6,12 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Mex!</title>
-  <link rel="stylesheet" href="{% static 'css/fontawesome/css/fontawesome-all.min.css' %}">
+  <link rel="stylesheet" href="{% static 'css/fontawesome/css/fontawesome-all.css' %}">
   <link rel="shortcut icon" href="{% static 'img/colorLogo.png'%}" type="image/x-icon">
   <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 
-<body>
+<body class="body">
     <header class=" glass_view">
       <a href="{% url 'index' %}" class="small_logo"><img src="{%static 'img/colorLogo.png' %}" alt=""><span>
         </span></a>
@@ -42,14 +42,14 @@
   </div>
   {% block banner %}
   {% endblock %}
-  <section class="section">
-    <div class="container">
+  <br><br><br><br>
+  <div class="base_extend">
       {% block content %}
       {% endblock %}
       {% block pagination %}
       {% endblock %}
     </div>
-  </section>
+  
 </body>
 <script src="{% static 'js/init.js' %}"></script>
 <script src="{% static 'js/jquery-3.3.1.js' %}"></script>

@@ -2,7 +2,6 @@
 {% load static %}
 {% load humanize %}
 {% block content %}
-<br><br><br>
 <div class="columns is-mobile is-centered">
   <div class="column is-half">
     {% for post_item in post_items %}
@@ -46,7 +45,7 @@
             <p class="subtitle is-6">@{{ post_item.user.username }}</p>
             {{ post_item.caption }}
             <p>{% for tag in post_item.tags.all %}<a href="{{ tag.get_absolute_url }}">#{{ tag }}</a>{% endfor %}</p>
-            <br>
+            
             <strong><small>{{ post_item.posted | naturaltime }}</small></strong>
           </div>
           <div class="media-right">
@@ -56,7 +55,6 @@
         </div>
       </div>
     </div>
-    <br>
     {% endfor %}
   </div>
 </div>
