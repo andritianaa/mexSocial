@@ -6,39 +6,37 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../static/css/fontawesome/css/fontawesome-all.css">
     <title>Test</title>
 </head>
 
-<body>
-    <div class="result_list">
-
-        {% for user in users %}
-        <div class="user_card">
-            <div class="user_card_image">
-
-                {% if user.profile.picture %}
-                <img src="{{ user.profile.picture.url }}" alt="Photo de {{ user.username }}">
-                {% else %}
-                <img src="{% static 'img/no_picture.png'%}" alt="Photo de {{ user.username }}">
-                {% endif %}
-            </div>
-            <div class="user_card_desc">
-                <h6 class="user_username_text">{{ user.username }}</h6>
-                <h6 class="user_name_text">{{ user.profile.first_name }} {{ user.profile.last_name }}</h6>
-            </div>
-            <a class="user_abonnement" href="#">S'abonner</a>
-            <div class="user_card_bottom">
-                <div class="user_card_message">
-                    <a href="{% url 'newconversation' user.username %}"> Message</a>
-                </div>
-                <div class="user_card_profile">
-                    <a href="url user.username"> Profil</a>
-                </div>
+<body class="body">
+    <div class="pro_container">
+        <div class="pro_profile">
+            <div class="pro_profile-image">
+                <img class="pro_img" src="profile.jpg" alt="photo de profile">
             </div>
         </div>
-        {% endfor %}
-    </div>
+        <div class="pro_profile-user-settings">
+            <h1 class="pro_profile-user-name">andritianaa</h1>
+            <a href="" class="pro_btn pro_profile-edit-btn">Modifier lle profil</a>
+            <a href="" class="pro_btn pro_profile-settings-btn" aria-label="Paramètres du profil"><i
+                    class="fas fa-cog"></i></a>
+        </div>
+        <div class="pro_profile-stats">
+            <ul>
+                <li><span class="pro_profile-stats-count">164</span>Publications</li>
+                <li><span class="pro_profile-stats-count">180</span>Abonnés</li>
+                <li><span class="pro_profile-stats-count">15</span>Abonneleents</li>
+            </ul>
+        </div>
+        <div class="pro_proffile-bio">
+            <p> <span class="pro_profile-real-name">Miandry Rakotoarivelo</span>Lorem ipsum dolor, sit amet consectetur
+                adipisicing elit. Eum, nemo repellendus. Quaerat debitis quam, quas eaque quos sapiente pariatur beatae
+                autem dolor impedit, sed perspiciatis. Corporis nemo ut beatae sequi.</p>
 
+        </div>
+    </div>
 </body>
 
 </html>
