@@ -94,12 +94,14 @@ def SendDirect(request):
 	to_user_username = request.POST.get('to_user')
 	body = request.POST.get('body')
 	
+	
 	if request.method == 'POST':
 		to_user = User.objects.get(username=to_user_username)
 		Message.send_message(from_user, to_user, body)
 		return redirect('inbox')
 	else:
 		HttpResponseBadRequest()
+
 
 def checkDirects(request):
 	directs_count = 0

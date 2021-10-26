@@ -33,6 +33,7 @@ INSTALLED_APPS = [
     'comment',
     'direct',
     'notifications',
+    'base',
 
 ]
 

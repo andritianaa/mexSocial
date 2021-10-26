@@ -12,32 +12,13 @@
 <div class="resultats_total">
     {% for user in users %}
     <div class="user_card">
-        <div class="user_card_image">
-
-            {% if user.profile.picture %}
-            <img src="{{ user.profile.picture.url }}" alt="Photo de {{ user.username }}">
-            {% else %}
-            <img src="{% static 'img/no_picture.png'%}" alt="Photo de {{ user.username }}">
-            {% endif %}
-        </div>
         <div class="user_card_desc">
             <h6 class="user_username_text">{{ user.username }}</h6>
             <h6 class="user_name_text">{{ user.profile.first_name }} {{ user.profile.last_name }}</h6>
         </div>
-        <!-- {% if user.is_authenticated and user != profile.user %}
-
-        {% if user.follow == 0 %}
-        <a href="{% url 'follow' user 0 %}" class="user_abonnement">Se désabonner</a>
-        {% else %}
-        <a href="{% url 'follow' user 1 %}" class="user_abonnement">S'abonner</a>
-        {% endif  %}
-        {% endif %} -->
         <div class="user_card_bottom">
             <a href="{% url 'newconversation' user.username %}" class="user_card_message">
                 <h4> Message</h4>
-            </a>
-            <a href="{% url 'profile' user.username %}" class="user_card_profile">
-                <h4> Profil</h4>
             </a>
         </div>
     </div>

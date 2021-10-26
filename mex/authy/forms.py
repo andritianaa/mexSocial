@@ -23,10 +23,10 @@ def UniqueUser(value):
 		raise ValidationError("Ce nom d'utilisateur est déjà utilisé")
 
 class SignupForm(forms.ModelForm):
-	username = forms.CharField(widget=forms.TextInput(attrs={'class': 'input-text'}), max_length=30, required=True,)
+	username = forms.CharField(widget=forms.TextInput(attrs={'class': 'input'}), max_length=30, required=True,)
 	email   = forms.CharField(widget=forms.EmailInput(), max_length=100, required=False)
-	password = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'input-text'}))
-	confirm_password = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'input-text'}), required=True, label="Confirmation de mot de passe")
+	password = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'input-text password'}))
+	confirm_password = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'input-text password'}), required=True, label="Confirmation de mot de passe")
 
 	class Meta:
 		model = User

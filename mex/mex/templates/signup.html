@@ -21,29 +21,8 @@
         <label for="username"><strong>Nom d'utilisateur</strong></label>
       </div>
 
-      <!-- prenom  -->
-      <div class="input-box">
-        <input name="first_name" required type="{{ form.first_name }}">
-        <label for="first_name"><strong>Prénom</strong></label>
-      </div>
 
-      <!-- nom -->
-      <div class="input-box">
-        <input name="last_name" required type="{{ form.last_name }}">
-        <label for="last_name"><strong>Nom</strong></label>
-      </div>
-
-      <!-- adresse -->
-      <div class="input-box">
-        <input name="location" required type="{{ form.location }}">
-        <label for="location"><strong>Adresse</strong></label>
-      </div>
-
-      <!-- url -->
-      <div class="input-box">
-        <input name="url" required type="{{ form.url }}">
-        <label for="url"><strong>Site internet</strong></label>
-      </div>
+     
 
       <!-- mail -->
       <div class="input-box">
@@ -53,13 +32,13 @@
 
       <!-- mdp -->
       <div class="input-box">
-        <input name="password" required type="{{ form.password }}">
+        {{ form.password }}
         <label for="password"><strong>Mot de passe</strong></label>
       </div>
 
       <!-- confirmation mdp -->
       <div class="input-box">
-        <input name="confirm_password" required type="{{ form.confirm_password }}">
+        {{ form.confirm_password }}
         <label for="confirm_password"><strong>Confirmer le mot de passe</strong></label>
       </div>
 

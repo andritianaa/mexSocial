@@ -2,64 +2,43 @@
 {% load static %}
 {% load humanize %}
 {% block content %}
-<link rel="stylesheet" href="{% static 'css/bulma.min.css' %}">
-<link rel="stylesheet" href="{% static 'css/style2.css' %}">
-<div class="columns is-mobile">
-  <div class="column is-one-quarter">  
-    <aside class="menu">
-      <h1 class="title is-2">Messages</h1>
-      <ul style="overflow-y: scroll; height: 500px" class="menu-list">
+<div class="columns is-mobile" style="background: #bdbdbd;">
+  <div>
+    <aside>
+      <h1>Messages</h1>
+      <ul style="overflow-y: scroll; height: 400px">
         {% for message in messages %}
-        <a class="{% if active_direct == message.user.username %}is-active{% endif %}"
+        <a class="{% if active_direct == message.user.username %}discu-active{% endif %}"
           href="{% url 'directs' message.user.username %}">
-          <div class="box">
-            <article class="media">
-              <div class="media-left">
-                <figure class="image is-64x64">
-                  {% if message.user.profile.picture %}
-                  <img src="{{ message.user.profile.picture.url }}" alt="Placeholder image">
-                  {% else %}
-                  <img src="{% static 'img/no_picture.png'%}" alt="Placeholder image">
-                  {% endif %}
-                </figure>
-              </div>
-              <div class="media-content">
-                <div class="content">
-                  <p>
-                    <strong>{{ message.user.username }}</strong>
-                  </p>
-                </div>
-                <div class="content">
-                  {% if message.unread %}
-                  <p style="font-weight: bold; color: red;">
-                    {{ message.unread }} messages non lus
-                  </p>
-                  {% endif %}
-                </div>
-              </div>
-            </article>
-          </div>
+          <article class="media">
+           
+            <div>
+              <p><b>{{ message.user.username }}</b></p>
+            </div>
+            {% if message.unread %}
+            <p style="color: red;">{{ message.unread }} messages non lus</p>
+            {% endif %}
+          </article>
         </a>
         {% endfor %}
       </ul>
     </aside>
-    >
-    <a href="{% url 'usersearch' %}" class="button is-success">Nouveau message</a>
+    <a href="{% url 'usersearch' %}" style="padding: 1rem; background: turquoise; border-radius: 5px;">Nouveau message</a>
   </div>
   <div class="column">
     <div style="overflow-y: scroll; height: 500px">
       {% for direct in directs %}
       {% if direct.body%}
-      {% if direct.sender   ==  user %}
-      <div class="box">
-        <article class="media">
+      {% if direct.sender == user %}
+      <div style="margin-bottom: 0.5rem;">
+        <article class="media" style="background: tomato;">
           <div class="media-left">
           </div>
           <div class="media-content">
-            <div class="content">
+            <div>
               <p>
-                <strong>Moi</strong>
-                <small>{{ direct.date|naturaltime}}</small>
+                <p>{{ direct.date|naturaltime}}</p>
+                <b>Moi</b>
               </p>
               <p>{{ direct.body }}</p>
             </div>
@@ -67,16 +46,15 @@
         </article>
       </div>
       {%else%}
-      
-      <div class="box">
+      <div>
         <article class="media">
           <div class="media-left">
           </div>
           <div class="media-content">
-            <div class="content">
+            <div>
               <p>
-                <strong>{{ direct.sender.username }}</strong>
-                <small>{{ direct.date|naturaltime}}</small>
+                <p>{{ direct.date|naturaltime}}</p>
+                <b>{{ direct.sender.username }}</b>
               </p>
               <p>{{ direct.body }}</p>
             </div>
@@ -90,28 +68,18 @@
     <form role="form" method="POST" action="{% url 'send_direct' %}">
       {% csrf_token %}
       <article class="media">
-        <figure class="media-left">
-          <p class="image is-64x64">
-            <img src="{% static 'img/no_picture.png'%}">
-          </p>
-        </figure>
         <div class="media-content">
-          <input type="hidden" name="to_user" value="{{ active_direct }}">
           <div class="field">
-            <p class="control">
-              <input type="text" required class="textarea" name="body" placeholder="Envoyez un message..."></input>
-            </p>
+            <input type="text" required class="textarea input_message" name="body" placeholder="Envoyez un message..."></input>
           </div>
-          <nav class="level">
-            <div class="level-left">
-              <div class="level-item">
-                <button type="submit" name="action" class="button is-info">Send</buttom>
-              </div>
-            </div>
-          </nav>
+          <button type="submit" name="action">Envoyer</buttom>
         </div>
       </article>
     </form>
+    
+
+
+
   </div>
 </div>
 {% endblock %}
