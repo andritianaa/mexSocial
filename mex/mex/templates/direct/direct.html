@@ -2,11 +2,10 @@
 {% load static %}
 {% load humanize %}
 {% block content %}
-<link rel="stylesheet" href="{% static 'css/bulma.min.css' %}">
-<link rel="stylesheet" href="{% static 'css/style2.css' %}">
-<div class="columns is-mobile">
-  <div class="column is-one-quarter">  
-    <aside class="menu">
+
+<div>
+  <div>  
+<aside>
       <h1 class="title is-2">Messages</h1>
       <ul style="overflow-y: scroll; height: 500px" class="menu-list">
         {% for message in messages %}
