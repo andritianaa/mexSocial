@@ -47,13 +47,13 @@ body{
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    background-image: url(background3.jpg);
+    background-image: url(../img/background3.jpg);
 
 }
 .login-center-text h1{
     display: flex;
     width: 500px;
-    background-image: url(background3.jpg);
+    background-image: url(../img/background3.jpg);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
@@ -69,7 +69,7 @@ body{
     text-transform: uppercase;
     margin: 1rem 0;
     padding: 0 4rem;
-    background-image: url(background3.jpg);
+    background-image: url(../img/background3.jpg);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 
@@ -192,50 +192,46 @@ body{
 
 /* responsive  */
 
-    @media screen and (max-width: 1050px)  {
-        .main-login-container{
-            grid-gap: 5rem;
-
-        }
-        
-        .login-center-text h1{
-            width: 400px;
-        }
+@media screen and (max-width: 1050px)  {
+    .main-login-container{
+        grid-gap: 5rem;
     }
-    @media screen and (max-width: 1000px)  {
-        #login-form{
-            width: 290px;
-        }
-        #login-form h2{
-            margin: 8px 0;
-
-        }
-        .login-center-text h1{
-            width: 400px;
-        }
-        .login-center-text{
     
-            font-size: 2rem;
-            
-        }
-
+    .login-center-text h1{
+        width: 400px;
     }
-    @media screen and (max-width: 900px)  {
-        .login-center-text{
-            display: none;
-        }
-        .main-login-container{
-            grid-template-columns: 1fr;
-        }
-        .login-container{
-            justify-content: center;
-        }
-        #login-form{
-            width: 100%;
-            margin:0 20% ;
-        }
-        #login-form h2{
-            margin: 8px 0;
-
-        }
+}
+@media screen and (max-width: 1000px)  {
+    #login-form{
+        width: 290px;
     }
+    #login-form h2{
+        margin: 8px 0;
+    }
+    .login-center-text h1{
+        width: 400px;
+    }
+    .login-center-text{
+
+        font-size: 2rem;
+        
+    }
+}
+@media screen and (max-width: 900px)  {
+    .login-center-text{
+        display: none;
+    }
+    .main-login-container{
+        grid-template-columns: 1fr;
+    }
+    .login-container{
+        justify-content: center;
+    }
+    #login-form{
+        width: 100%;
+        margin:0 20% ;
+    }
+    #login-form h2{
+        margin: 8px 0;
+    }
+}

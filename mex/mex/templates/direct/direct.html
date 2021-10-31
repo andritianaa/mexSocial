@@ -87,7 +87,7 @@
       {%endif%}
       {% endfor %}
     </div>
-    <form role="form" method="POST" action="{% url 'send_direct' %}">
+    <form autocomplete="off" role="form" method="POST" action="{% url 'send_direct' %}">
       {% csrf_token %}
       <article class="media">
         <figure class="media-left">

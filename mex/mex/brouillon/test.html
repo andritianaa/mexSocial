@@ -11,6 +11,59 @@
 </head>
 
 <body class="body">
+    <div class="main-login-container">
+        <div class="login-center-text">
+            <h1 class="login-heading">Connectez<br>VOUS!</h1>
+        </div>
+        <div class="login-container">
+            <form autocomplete="off" id="login-form" action="">
+                <img src="colorLogo.png" class="login-logo" alt="logo">
+                <h2>Mex network</h2>
+                <div class="input-div one">
+                    <div class="i_login">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div>
+                        <h5>Nom d'utilisateur</h5>
+                        <input type="text" class="input_login" id="id_username">
+                    </div>
+                </div>
+                
+                <div class="input-div two">
+                    <div class="i_login">
+                        <i class="fas fa-lock"></i>
+                    </div>
+                    <div>
+                        <h5>Mot de passe</h5>
+                        <input type="password" class="input_login" id="id_password">
+                    </div>
+                </div>
+
+                <a class="a_login" href="">Pas encore de compte?</a>
+                <input type="submit" class="login-button" value="Connexion">
+            </form>
+
+        </div>
+    </div>
 </body>
 
+<script>
+    const inputs = document.querySelectorAll('.input_login');
+    function focusFunc(){
+        let parent = this.parentNode.parentNode;
+        parent.classList.add('focus');
+    }
+    function blurFunc(){
+        let parent = this.parentNode.parentNode;
+        if(this.value == ""){
+            parent.classList.remove('focus');
+        }
+    }
+
+
+    inputs.forEach(input => {
+        input.addEventListener('focus',focusFunc);
+        input.addEventListener('blur',blurFunc);
+    });
+</script>
 </html>

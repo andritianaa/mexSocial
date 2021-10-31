@@ -3,7 +3,7 @@
 {% block content %}
 
 
-<form class="rechercher">
+<form autocomplete="off" class="rechercher">
     <input class="input_recherche" name="q" type="text" placeholder=" Rechercher..." value="{{ request.GET.q }}">
     <div class="control">
         <button type="submit" class="primaryColor boutton">Rechercher</button>
