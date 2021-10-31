@@ -22,7 +22,6 @@
 }
 
 * {
-    color: var(--white);
     margin: 0;
     padding: 0;
     transition: var(--transition);
@@ -53,6 +52,8 @@ body {
 }
 
 .boutton {
+    color: var(--white);
+    background-color: var(--primaryColor);
     border-style: none;
     border-radius: 4px;
     font-size: 1rem;
@@ -527,3 +528,86 @@ header a img {
 }
 
 /* notification fin  */
+
+/* login */
+.hero{
+    background-image: url(../img/background1.jpg);
+    background-size: cover;
+    height: 100vh;
+    position: relative;
+}
+
+.heading__text{
+    display: block;
+    background-image: url(../img/background1.jpg);
+    background-size: 100vw 100vh;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.hero::after{
+    content: '';
+    position: absolute;
+    left: 0;
+    height: 100%;
+    width: 40vw;
+    background-color: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(15px);
+}
+
+
+.login-center-text{
+    position: absolute;
+    top: 50%;
+    left: 20%;
+    transform: translate(-50%,-50% );
+    z-index: 1;
+
+}
+.login-heading{
+    font-size: 5rem;
+    font-weight: 800;
+    color: var(--white);
+}
+
+.login-bottom-text{
+    position: absolute;
+    left: 4rem;
+    bottom: 2rem;
+    width: 25rem;
+    display: flex;
+    gap: 1rem;
+    color: var(--white);
+    z-index: 1;
+
+}
+.login-bottom-text h1{
+    letter-spacing: 2px;
+}
+.login-bottom-text div > *{
+    margin-bottom: 1rem;
+
+}
+.login-bottom-text p{
+    color: rgba(255, 255, 255, .7);
+}
+.sign-link{
+    color: rgba(255, 255, 255, .6);
+}
+.sign-link:hover{
+    color: var(--white);
+}
+.sign-link span{
+    font-size: 1.4rem;
+    margin-left: .6rem;
+}
+
+
+
+.right-hero{
+    position: absolute;
+    right: 0;
+    width: 60vw;
+    height: 100vh;
+    background-color: var(--white);
+}
+/* fin login */
