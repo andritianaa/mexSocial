@@ -2,7 +2,7 @@
 :root {
     --borad: 1rem;
     --boradsmall: 0.375rem;
-    --primaryColor: royalblue;
+    --primaryColor: #1e88e5;
     --secondaryColor: #1565c0;
     --white: #f0f0f0;
     --red: #e53935;
@@ -47,13 +47,13 @@ body{
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    background-color: royalblue;
+    background-image: url(../img/background3.jpg);
 
 }
 .login-center-text h1{
     display: flex;
     width: 500px;
-    background-image: url(background3.jpg);
+    background-image: url(../img/background3.jpg);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
@@ -69,7 +69,7 @@ body{
     text-transform: uppercase;
     margin: 1rem 0;
     padding: 0 4rem;
-    background-image: url(background3.jpg);
+    background-image: url(../img/background3.jpg);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 
@@ -91,7 +91,7 @@ body{
     width: 0 ;
     height: 2px;
     transition: .3s;
-    background-color: royalblue;
+    background-color: var(--primaryColor);
 }
 .input-div::after{
     right: 50%;
@@ -102,7 +102,10 @@ body{
 .input-div.one{
     margin-top: 0;
 }
-.input-div.two{
+.input-div.two,
+.input-div.three,
+.input-div.four
+{
     margin-bottom: 4px;
 }
 .i_login{
@@ -139,7 +142,7 @@ body{
     left: 0.625rem;
     top: 50%;
     transform: translateY(-50%);
-    color: var(--deepgrey) ;
+    color: var(--deepgrey);
     font-size: 1.125rem;
     transition: .3s;
 }
@@ -192,50 +195,46 @@ body{
 
 /* responsive  */
 
-    @media screen and (max-width: 1050px)  {
-        .main-login-container{
-            grid-gap: 5rem;
-
-        }
-        
-        .login-center-text h1{
-            width: 400px;
-        }
+@media screen and (max-width: 1050px)  {
+    .main-login-container{
+        grid-gap: 5rem;
     }
-    @media screen and (max-width: 1000px)  {
-        #login-form{
-            width: 290px;
-        }
-        #login-form h2{
-            margin: 8px 0;
-
-        }
-        .login-center-text h1{
-            width: 400px;
-        }
-        .login-center-text{
     
-            font-size: 2rem;
-            
-        }
-
+    .login-center-text h1{
+        width: 400px;
     }
-    @media screen and (max-width: 900px)  {
-        .login-center-text{
-            display: none;
-        }
-        .main-login-container{
-            grid-template-columns: 1fr;
-        }
-        .login-container{
-            justify-content: center;
-        }
-        #login-form{
-            width: 100%;
-            margin:0 20% ;
-        }
-        #login-form h2{
-            margin: 8px 0;
-
-        }
+}
+@media screen and (max-width: 1000px)  {
+    #login-form{
+        width: 290px;
     }
+    #login-form h2{
+        margin: 8px 0;
+    }
+    .login-center-text h1{
+        width: 400px;
+    }
+    .login-center-text{
+
+        font-size: 2rem;
+        
+    }
+}
+@media screen and (max-width: 900px)  {
+    .login-center-text{
+        display: none;
+    }
+    .main-login-container{
+        grid-template-columns: 1fr;
+    }
+    .login-container{
+        justify-content: center;
+    }
+    #login-form{
+        width: 100%;
+        margin:0 20% ;
+    }
+    #login-form h2{
+        margin: 8px 0;
+    }
+}
