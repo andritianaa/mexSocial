@@ -1,4 +1,3 @@
-
 :root {
     --borad: 1rem;
     --boradsmall: 0.375rem;
@@ -12,7 +11,7 @@
     --smallFont: 'Poppins', sans-serif;
     --transition: all 0.3s ease;
     --error: #b71c1c;
-    --deepgrey : #999;
+    --deepgrey: #999;
     --midGrey: #555;
     --blackTxt: #333;
 }
@@ -24,57 +23,64 @@
     text-decoration: none;
     font-family: var(--smallFont);
 }
-body{
+
+body {
     font-family: 'Poppins', sans-serif;
 }
-.main-login-container{
+
+.main-login-container {
     width: 100vw;
     height: 100vh;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-gap: 7rem;
-     
+
 }
-.login-logo{
+
+.login-logo {
     width: 100px;
 }
 
-.login-center-text{
-    
+.login-center-text {
+
     font-size: 2.3rem;
     font-weight: 800;
-    color: var(--white); 
+    color: var(--white);
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    
+
+    animation: animatedBackground 10s linear infinite alternate;
     background-image: url(../img/cloudWhite.jpg);
 
 }
-.login_blur{
+
+.login_blur {
     backdrop-filter: blur(20px);
     height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
 }
-.login-center-text h1{
+
+.login-center-text h1 {
     display: flex;
     pointer-events: none;
     width: 500px;
     background-image: url(../img/sky.jpg);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+    animation: animatedBackground 50s linear infinite alternate;
     margin-left: 2rem;
 }
 
-.login-container{
+.login-container {
     display: flex;
     align-items: center;
     text-align: center;
 }
 
-#sign-form h4{
+#sign-form h4 {
     pointer-events: none;
     font-size: 2rem;
     text-transform: uppercase;
@@ -82,11 +88,13 @@ body{
     padding: 0 4rem;
     background-image: url(../img/anim.jpg);
     -webkit-background-clip: text;
+    animation: animatedBackground 50s linear infinite alternate;
     -webkit-text-fill-color: transparent;
 
 }
-.input-div{
-    
+
+.input-div {
+
     cursor: pointer;
     position: relative;
     display: grid;
@@ -98,67 +106,77 @@ body{
 }
 
 .input-div::after,
-.input-div::before{
+.input-div::before {
     cursor: pointer;
     content: '';
     position: absolute;
     bottom: -2px;
-    width: 0 ;
+    width: 0;
     height: 2px;
     transition: .3s;
     background-color: var(--primaryColor);
 }
-.input-div::after{
+
+.input-div::after {
     right: 50%;
 }
-.input-div::before{
+
+.input-div::before {
     left: 50%;
 }
-.input-div.one{
+
+.input-div.one {
     margin-top: 0;
 }
-.input-div.two{
+
+.input-div.two {
     margin-bottom: 0;
 }
-.i_login{
+
+.i_login {
     display: flex;
     justify-content: center;
     align-items: center;
 }
-.i_login i{
+
+.i_login i {
     color: var(--grey);
     transition: .3s;
 }
-.input-div > div{
-        position: relative;
-        height: 2rem;
-        
+
+.input-div>div {
+    position: relative;
+    height: 2rem;
+
 }
 
-.input-div.focus div h5{
+.input-div.focus div h5 {
     top: -5px;
     font-size: 0.9rem;
 }
-.input-div.focus div i{
+
+.input-div.focus div i {
     color: var(--primaryColor);
 }
+
 .input-div.focus::after,
-.input-div.focus::before{
+.input-div.focus::before {
     width: 50%;
     color: var(--primaryColor);
 }
 
 
-.input-div > div h5{
+.input-div>div h5 {
     position: absolute;
     left: 0.625rem;
     top: 50%;
     transform: translateY(-50%);
-    color: var(--deepgrey) ;
+    color: var(--deepgrey);
     font-size: 1.125rem;
     transition: .3s;
 }
-.input_login{
+
+.input_login {
     cursor: pointer;
     position: absolute;
     width: 100%;
@@ -171,23 +189,27 @@ body{
     padding: 0.5rem 0.7rem;
     font-size: 1rem;
     color: var(--midGrey);
-    font-family: 'Poppins',sans-serif;
+    font-family: 'Poppins', sans-serif;
     font-weight: 600;
 }
-.input_login .input_login{
+
+.input_login .input_login {
     top: -8px;
 }
-.a_login{
+
+.a_login {
     display: block;
     text-align: right;
     text-decoration: none;
     color: var(--deepgrey);
     font-size: 0.9rem;
 }
-.a_login:hover{
+
+.a_login:hover {
     color: var(--primaryColor);
 }
-.login-button{
+
+.login-button {
     text-transform: uppercase;
     display: block;
     width: 100%;
@@ -200,62 +222,72 @@ body{
     background-image: linear-gradient(to right, var(--secondaryColor), var(--primaryColor), var(--secondaryColor));
     cursor: pointer;
     color: var(--white);
-    font-family: 'Poppins',sans-serif;
+    font-family: 'Poppins', sans-serif;
     background-size: 200%;
     transition: .5s;
 }
-.login-button:hover{
-        background-position: right;
+
+.login-button:hover {
+    background-position: right;
 }
 
 /* responsive  */
 
-@media screen and (max-width: 1050px)  {
-    .main-login-container{
+@media screen and (max-width: 1050px) {
+    .main-login-container {
         grid-gap: 5rem;
     }
-    
-    .login-center-text h1{
+
+    .login-center-text h1 {
         width: 400px;
     }
 }
-@media screen and (max-width: 1000px)  {
-    #sign-form{
+
+@media screen and (max-width: 1000px) {
+    #sign-form {
         width: 290px;
     }
-    #sign-form h4{
+
+    #sign-form h4 {
         margin: 8px 0;
     }
-    .login-center-text h1{
+
+    .login-center-text h1 {
         width: 400px;
         position: fixed;
     }
-    .login-center-text{
+
+    .login-center-text {
         position: fixed;
         font-size: 2rem;
-        
+
     }
 }
-@media screen and (max-width: 900px)  {
-    .login-center-text{
+
+@media screen and (max-width: 900px) {
+    .login-center-text {
         display: none;
     }
-    .main-login-container{
+
+    .main-login-container {
         grid-template-columns: 1fr;
     }
-    .login-container{
+
+    .login-container {
         justify-content: center;
     }
-    #sign-form{
+
+    #sign-form {
         width: 100%;
-        margin:0 20% ;
+        margin: 0 20%;
     }
-    #sign-form h4{
+
+    #sign-form h4 {
         margin: 8px 0;
     }
 }
 
-.authError{
+.authError {
     color: var(--white);
     background-color: tomato;
     border: 2px solid red;
@@ -270,6 +302,16 @@ body{
     font-variant-numeric: unset !important;
     text-transform: none !important;
     text-indent: unset !important;
-    text-align:  unset !important;
+    text-align: unset !important;
     text-align-last: unset !important;
+}
+
+@keyframes animatedBackground {
+    from {
+        background-position: 0 0;
+    }
+
+    to {
+        background-position: 100% 30%;
+    }
 }

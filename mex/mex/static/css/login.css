@@ -50,6 +50,7 @@ body {
     justify-content: flex-end;
     align-items: center;
 
+    animation: animatedBackground 10s linear infinite alternate;
     background-image: url(../img/cloudWhite.jpg);
 
 }
@@ -66,6 +67,8 @@ body {
     display: flex;
     pointer-events: none;
     width: 500px;
+    
+    animation: animatedBackground 50s linear infinite backwards;
     background-image: url(../img/sky.jpg);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -84,6 +87,8 @@ body {
     text-transform: uppercase;
     margin: 1rem 0;
     padding: 0 4rem;
+    
+    animation: animatedBackground 200s linear infinite backwards;
     background-image: url(../img/anim.jpg);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -309,4 +314,14 @@ body {
     text-indent: unset !important;
     text-align: unset !important;
     text-align-last: unset !important;
+}
+
+@keyframes animatedBackground {
+    from {
+        background-position: 0 0;
+    }
+
+    to {
+        background-position: 100% 50%;
+    }
 }
