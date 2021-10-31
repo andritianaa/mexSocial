@@ -1,77 +1,82 @@
 {% load static %}
+{% load widget_tweaks%}
 <!DOCTYPE html>
 <html>
 
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Créer un compte</title>
+  <title>Inscription</title>
   <link rel="shortcut icon" href="{% static 'img/colorLogo.png'%}" type="image/x-icon">
-  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  <link rel="stylesheet" href="{% static 'css/sign.css' %}">
+  <link rel="stylesheet" href="{% static 'css/fontawesome/css/fontawesome-all.css' %}">
 </head>
 
 <body class="body">
-  <div class="container center_content">
-    <form class="center_form" method="post" action="" role="form">
-      {% csrf_token %}
-      <h3 class="grand_titre">Créer un compte</h3>
-      <!-- username -->
-      <div class="input-box">
-        <input name="username" required type="{{ form.username }}">
-        <label for="username"><strong>Nom d'utilisateur</strong></label>
+  <div class="main-login-container">
+    <div class="login-center-text">
+      <div class="login_blur">
+        <h1 class="login-heading">Bienvenue<br>à VOUS!</h1>
       </div>
+    </div>
+    <div class="login-container">
+      <form autocomplete="off" autocomplete="off" id="sign-form" method="post" action="" role="form">
+        {% csrf_token %}
+        <h4>Inscription</h4>
 
-      <!-- prenom  -->
-      <div class="input-box">
-        <input name="first_name" required type="{{ form.first_name }}">
-        <label for="first_name"><strong>Prénom</strong>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                </label>
-      </div>
+        <div class="input-div one">
+          <div class="i_login">
+            <i class="fas fa-user"></i>
+          </div>
+          <div class="input_login">
+            <h5>Nom d'utilisateur</h5>
+            {% render_field form.username  class="input_login" id="id_username" %}
+          </div>
+        </div>
 
-      <!-- nom -->
-      <div class="input-box">
-        <input name="last_name" required type="{{ form.last_name }}">
-        <label for="last_name"><strong>Nom</strong></label>
-      </div>
+        <div class="input-div one">
+          <div class="i_login">
+            <i class="fas fa-address-card"></i>
+          </div>
+          <div class="input_login">
+            <h5>Adresse mail</h5>
+            {% render_field form.email class="input_login" id="id_mail" %}
+          </div>
+        </div>
 
-      <!-- adresse -->
-      <div class="input-box">
-        <input name="location" required type="{{ form.location }}">
-        <label for="location"><strong>Adresse</strong></label>
-      </div>
+        <div class="input-div two">
+          <div class="i_login">
+            <i class="fas fa-lock"></i>
+          </div>
+          <div class="input_login">
+            <h5>Mot de passe</h5>
+            {% render_field form.password class="input_login" id="id_password" %}
+          </div>
+        </div>
+        <div class="input-div two">
+          <div class="i_login">
+            <i class="fas fa-lock"></i>
+          </div>
+          <div class="input_login">
+            <h5>Mot de passe</h5>
+            {% render_field form.confirm_password class="input_login" id="id_confirm_password" %}
+          </div>
+        </div>
 
-      <!-- url -->
-      <div class="input-box">
-        <input name="url" required type="{{ form.url }}">
-        <label for="url"><strong>Site internet</strong></label>
-      </div>
 
-      <!-- mail -->
-      <div class="input-box">
-        <input name="mail" required type="{{ form.mail }}">
-        <label for="mail"><strong>Adresse mail</strong></label>
-      </div>
+        <a class="a_login" href="{% url 'login' %}">Vous possedez un compte?</a>
+        <input type="submit" name="action" class="login-button" value="Inscription">
+        {% if form.errors %}
+        <div class="authError">
+          <span>{{ form.errors }}</span>
+        </div>
+        {% endif %}
+        <input type="hidden" name="next" value="{{ next }}">
+      </form>
 
-      <!-- mdp -->
-      <div class="input-box">
-        <input name="password" required type="{{ form.password }}">
-        <label for="password"><strong>Mot de passe</strong></label>
-      </div>
-
-      <!-- confirmation mdp -->
-      <div class="input-box">
-        <input name="confirm_password" required type="{{ form.confirm_password }}">
-        <label for="confirm_password"><strong>Confirmer le mot de passe</strong></label>
-      </div>
-
-      <div class="row">
-        <span style="color: red; font-weight: bold;">{{ form.errors }}</span>
-      </div>
-      <div class="duo">
-        <button type="submit" name="action" class="boutton primaryColor">Créer</button>
-        <a class="cancel" href="{% url 'profile' request.user %}">Annuler</a>
-      </div>
-    </form>
+    </div>
   </div>
 </body>
+<script src="{% static 'js/login.js' %}"></script>
 
 </html>

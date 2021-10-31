@@ -4,60 +4,60 @@
 <html>
 
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Hello Mex!</title>
-  <link rel="shortcut icon" href="{% static 'img/colorLogo.png'%}" type="image/x-icon">
-  <link rel="stylesheet" href="{% static 'css/login.css' %}">
-  <link rel="stylesheet" href="{% static 'css/fontawesome/css/fontawesome-all.css' %}">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Hello Mex!</title>
+    <link rel="shortcut icon" href="{% static 'img/colorLogo.png'%}" type="image/x-icon">
+    <link rel="stylesheet" href="{% static 'css/login.css' %}">
+    <link rel="stylesheet" href="{% static 'css/fontawesome/css/fontawesome-all.css' %}">
 </head>
 
 <body class="body">
-  <div class="main-login-container">
-      <div class="login-center-text">
-          <h1 class="login-heading">Connectez<br>VOUS!</h1>
-      </div>
-      <div class="login-container">
-          <form autocomplete="off" autocomplete="off" id="login-form" method="post" action="" role="form">
-              {% csrf_token %}
-              <img src="{%static 'img/colorLogo.png'%}" class="login-logo" alt="logo">
-              <h2>Mex network</h2>
-              <div class="input-div one">
-                  <div class="i_login">
-                      <i class="fas fa-user"></i>
-                  </div>
-                  <div class="input_login">
-                      <h5>Nom d'utilisateur</h5>
-                      {{ form.username }}
-                      
-                  </div>
-              </div>
+    <div class="main-login-container">
+        <div class="login-center-text">
+            <div class="login_blur">
+                <h1 class="login-heading">Connectez<br>VOUS!</h1>
+            </div>
+        </div>
+        <div class="login-container">
+            <form autocomplete="off" autocomplete="off" id="login-form" method="post" action="" role="form">
+                {% csrf_token %}
+                <img src="{%static 'img/colorLogo.png'%}" class="login-logo" alt="logo">
+                <h2>Mex network</h2>
+                <div class="input-div one">
+                    <div class="i_login">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="input_login">
+                        <h5>Nom d'utilisateur</h5>
+                        {% render_field form.username  class="input_login" id="id_username" %}
 
-              <div class="input-div two">
-                  <div class="i_login">
-                      <i class="fas fa-lock"></i>
-                  </div>
-                  <div class="input_login">
-                      <h5>Mot de passe</h5>
-                      {{ form.password }}
-                  </div>
-              </div>
+                    </div>
+                </div>
 
-              <a class="a_login" href="{% url 'signup' %}">Pas encore de compte?</a>
-              <input type="submit" class="login-button" value="Connexion">
-              {% if form.errors %}
-              <div>
-                  <div>
-                      <span style="color: red; font-weight: bold;">le nom d'utilisateur ou le mot de passe ne
-                          correspond pas.</span>
-                  </div>
-              </div>
-              {% endif %}
-              <input type="hidden" name="next" value="{{ next }}">
-          </form>
+                <div class="input-div two">
+                    <div class="i_login">
+                        <i class="fas fa-lock"></i>
+                    </div>
+                    <div class="input_login">
+                        <h5>Mot de passe</h5>
+                        {% render_field form.password class="input_login" id="id_password" %}
+                    </div>
+                </div>
 
-      </div>
-  </div>
+                <a class="a_login" href="{% url 'signup' %}">Pas encore de compte?</a>
+                <input type="submit" class="login-button" value="Connexion">
+                {% if form.errors %}
+                <div class="authError">
+                    <span>Nom d'utilisateur ou mot de passe ne
+                        correspond pas.</span>
+                </div>
+                {% endif %}
+                <input type="hidden" name="next" value="{{ next }}">
+            </form>
+
+        </div>
+    </div>
 </body>
 <script src="{% static 'js/login.js' %}"></script>
 

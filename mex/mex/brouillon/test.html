@@ -1,69 +1,86 @@
+{% load static %}
+{% load widget_tweaks%}
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="../static/css/fontawesome/css/fontawesome-all.css">
-    <title>Test</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Inscription</title>
+    <link rel="shortcut icon" href="{% static 'img/colorLogo.png'%}" type="image/x-icon">
+    <link rel="stylesheet" href="{% static 'css/sign.css' %}">
+    <link rel="stylesheet" href="{% static 'css/fontawesome/css/fontawesome-all.css' %}">
 </head>
 
 <body class="body">
     <div class="main-login-container">
         <div class="login-center-text">
-            <h1 class="login-heading">Connectez<br>VOUS!</h1>
+            <div class="login_blur">
+                <h1 class="login-heading">Bienvenue<br>à VOUS!</h1>
+            </div>
         </div>
         <div class="login-container">
-            <form autocomplete="off" id="login-form" action="">
-                <img src="colorLogo.png" class="login-logo" alt="logo">
-                <h2>Mex network</h2>
+            <form autocomplete="off" autocomplete="off" id="sign-formm" method="post" action="" role="form">
+                {% csrf_token %}
+                <h2>Inscription</h2>
+                
                 <div class="input-div one">
                     <div class="i_login">
                         <i class="fas fa-user"></i>
                     </div>
-                    <div>
+                    <div class="input_login">
                         <h5>Nom d'utilisateur</h5>
-                        <input type="text" class="input_login" id="id_username">
+                        {% render_field form.username  class="input_login" id="id_username" %}
                     </div>
                 </div>
-                
+
                 <div class="input-div two">
                     <div class="i_login">
                         <i class="fas fa-lock"></i>
                     </div>
-                    <div>
-                        <h5>Mot de passe</h5>
-                        <input type="password" class="input_login" id="id_password">
+                    <div class="input_login">
+                        <h5>Adresse mail</h5>
+                        {% render_field form.mail class="input_login" id="id_mail" %}
                     </div>
                 </div>
 
-                <a class="a_login" href="">Pas encore de compte?</a>
-                <input type="submit" class="login-button" value="Connexion">
+                <div class="input-div two">
+                    <div class="i_login">
+                        <i class="fas fa-lock"></i>
+                    </div>
+                    <div class="input_login">
+                        <h5>Mot de passe</h5>
+                        {% render_field form.password class="input_login" id="id_password" %}
+                    </div>
+                </div>
+                <div class="input-div two">
+                    <div class="i_login">
+                        <i class="fas fa-lock"></i>
+                    </div>
+                    <div class="input_login">
+                        <h5>Mot de passe</h5>
+                        {% render_field form.confirm_password class="input_login" id="id_confirm_password" %}
+                    </div>
+                </div>
+                
+
+                <a class="a_login" href="{% url 'login' %}">Pas encore de compte?</a>
+                <input type="submit" name="action" class="login-button" value="Connexion">
+                {% if form.errors %}
+                <div>
+                    <div>
+                        <div class="row">
+                            <span style="color: red; font-weight: bold;">{{ form.errors }}</span>
+                          </div>
+                    </div>
+                </div>
+                {% endif %}
+                <input type="hidden" name="next" value="{{ next }}">
             </form>
 
         </div>
     </div>
 </body>
+<script src="{% static 'js/login.js' %}"></script>
 
-<script>
-    const inputs = document.querySelectorAll('.input_login');
-    function focusFunc(){
-        let parent = this.parentNode.parentNode;
-        parent.classList.add('focus');
-    }
-    function blurFunc(){
-        let parent = this.parentNode.parentNode;
-        if(this.value == ""){
-            parent.classList.remove('focus');
-        }
-    }
-
-
-    inputs.forEach(input => {
-        input.addEventListener('focus',focusFunc);
-        input.addEventListener('blur',blurFunc);
-    });
-</script>
 </html>
