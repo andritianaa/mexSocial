@@ -4,6 +4,8 @@
 {% block content %}
 <br>
 <div class="body">
+  <br>
+  <br><br>
   {% for post_item in post_items %}
   <div class="index_card">
       <div class="index_post_header">
@@ -48,6 +50,7 @@
       <h4 class="index_post"><b>@{{ post_item.user.username }}</b>, {{ post_item.caption }} {% for tag in post_item.tags.all %}<span><a href="{{ tag.get_absolute_url }}">#{{ tag }}</a></span>{% endfor %}</h4>
       
   </div>
+  <br> <br>
   {% endfor %}
 </div>
 

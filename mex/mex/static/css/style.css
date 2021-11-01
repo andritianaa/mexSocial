@@ -46,11 +46,11 @@
 body {
     background-attachment: fixed;
     animation: animatedBackground 100s linear infinite alternate;
-    background-image: url(../img/cloudWhite.jpg);
+    background-image: url(../img/blurCloud.png);
+    background-size: cover;
     margin: 0;
     padding: 0;
     font-family: var(--smallFont);
-    background-size: auto;
 }
 
 /* recherche  */
@@ -532,9 +532,7 @@ header a img {
 
 .body{
     
-    backdrop-filter: blur(20px);
     display: flex;
-    justify-content: center;
     align-items: center;
     flex-direction: column;
     height: 100vh;

@@ -66,12 +66,12 @@ body {
     display: flex;
     pointer-events: none;
     width: 100%;
-    
     animation: animatedBackground 50s linear infinite backwards;
     background-image: url(../img/sky.jpg);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     margin-left: 2rem;
+    background-size: 100vh;
 }
 
 .login-container {
@@ -88,7 +88,7 @@ body {
     padding: 0 4rem;
     
     animation: animatedBackground 200s linear infinite backwards;
-    background-image: url(../img/anim.jpg);
+    background-image: url(../img/skyBlue.jpg);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
