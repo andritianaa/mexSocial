@@ -28,7 +28,9 @@
 }
 
 .index_body{
+    background-color: black;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     height: 100vh;
@@ -78,6 +80,12 @@
 
 
 .index_post_img a img{
+    width: 230px;
+    height: 230px;
+    border-radius: var(--boradsmall);
+    object-fit: cover;
+}
+.index_post_img a video{
     width: 230px;
     height: 230px;
     border-radius: var(--boradsmall);

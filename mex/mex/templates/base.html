@@ -11,7 +11,7 @@
   <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 
-<body class="body">
+<body>
     <header class=" glass_view">
       <a href="{% url 'index' %}" class="small_logo"><img src="{%static 'img/colorLogo.png' %}" alt=""><span>
         </span></a>
@@ -42,14 +42,12 @@
   </div>
   {% block banner %}
   {% endblock %}
-  <br><br><br><br>
   <div class="base_extend">
       {% block content %}
       {% endblock %}
       {% block pagination %}
       {% endblock %}
     </div>
-  
 </body>
 <script src="{% static 'js/init.js' %}"></script>
 <script src="{% static 'js/jquery-3.3.1.js' %}"></script>
