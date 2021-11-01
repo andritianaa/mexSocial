@@ -1,41 +1,134 @@
-<!DOCTYPE html>
-<html>
 
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Accueil</title>
-  <link rel="shortcut icon" href="colorLogo.png" type="image/x-icon">
-  <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="owl.css">
-  <script src="jquery-3.3.1.js"></script>
-  <script src="owl.js"></script>
-</head>
-
-<body>
-  <div class="wrapper">
-    <div class="carousel owl-carousel">
-      <div class="ps_card"><img src="blur.png" alt=""></div>  
-      <div class="ps_card"><img src="profile.jpg" alt=""></div>
-      <div class="ps_card"><img src="background3.jpg" alt=""></div>
-      <div class="ps_card"><img src="colorLogo.png" alt=""></div>
+  {% extends 'base.html' %}
+  {% load static %}
+  {% load humanize %}
+  {% block content %}
+    <div class="wrapper">
+      <div class="carousel owl-carousel">
+        {% for cont in post.content.all %}
+        <div class="ps_card">
+          {% if cont.file.name|slice:"-3:" == 'jpg' or cont.file.name|slice:"-3:" == 'png' or cont.file.name|slice:"-4:" == 'jpeg' %}
+          <img src="{{ cont.file.url }}" alt="">
+          {% else %}
+          <video width="640" controls="controls" preload="metadata">
+            <source src="{{ cont.file.url }}#t=0.5" type="video/mp4">
+          </video>
+          {% endif %}
+        </div>
+        {% endfor %}
+      </div>
     </div>
-  </div>
-</body>
-
-<script>
-  $(".carousel").owlCarousel({
-    margin:10,
-    loop: true,
-    autoplay:true,
-    autoplayTimeoute: 2000,
-    autoplayHoverPause:true,
-    responsive:{
-      0:{
-        items:1,
-        nav: false
+    <div class="card-content">
+      <div class="media">
+        <div class="media-left">
+          <figure class="image is-48x48">
+            {% if post.user.profile.picture %}
+            <img src="{{ post.user.profile.picture.url }}" alt="Placeholder image">
+            {% else %}
+            <img src="{% static 'img/no_picture.png'%}" alt="Placeholder image">
+            {% endif %}
+          </figure>
+        </div>
+        <div class="media-content">
+          {% if post.user.profile.first_name %}
+          <p class="title is-4">{{ post.user.profile.first_name }} {{ post.user.profile.last_name }}</p>
+          {% else %}
+          <p class="title is-4">Inconnu</p>
+          {% endif %}
+          <p class="subtitle is-6">@{{ post.user.username }}</p>
+          {{ post.caption }}
+          <p>{% for tag in post.tags.all %}<a href="{{ tag.get_absolute_url }}">#{{ tag }}</a>{% endfor %}</p>
+          
+          <strong><small>{{ post.posted }}</small></strong>
+        </div>
+        {% if favorited is True %}
+        <div class="media-right">
+          <a href="{% url 'postfavorite' post.id %}"><i class="material-icons has-text-danger">save_alt</i></a>
+          <p>Supprimer</p>
+        </div>
+        {% else %}
+        <div class="media-right">
+          <a href="{% url 'postfavorite' post.id %}"><i class="material-icons has-text-success">save_alt</i></a>
+          <p>Enregistrer</p>
+        </div>
+        {% endif %}
+        <div class="media-right">
+          <a href="{% url 'postlike' post.id %}"><i class="material-icons has-text-danger">favorite</i></a>
+          <p>{{ post.likes }} Likes</p>
+        </div>
+      </div>
+    </div>
+    <div class="card-content">
+      {% for comment in comments %}
+      <article class="media">
+        <figure class="media-left">
+          <p class="image is-64x64">
+            {% if comment.user.profile.picture %}
+            <img src="{{ comment.user.profile.picture.url }}" alt="Placeholder image">
+            {% else %}
+            <img src="{% static 'img/no_picture.png'%}" alt="Placeholder image">
+            {% endif %}
+          </p>
+        </figure>
+        <div class="media-content">
+          <div class="content">
+            <p>
+              {% if comment.user.profile.first_name %}
+              <strong>{{ comment.user.profile.first_name }} {{ comment.user.profile.last_name }}</strong><small>
+                @{{ comment.user.username }}</small>
+              {% else %}
+              <strong>Unknown</strong>
+              {% endif %}
+              >
+              {{ comment.body }}
+              >
+              <strong><small>{{ comment.date|naturaltime }}</small></strong>
+            </p>
+          </div>
+      </article>
+      {% endfor %}
+      <article class="media">
+        <figure class="media-left">
+          <p class="image is-64x64">
+            {% if request.user.profile.picture %}
+            <img src="{{ request.user.profile.picture.url }}" alt="Placeholder image">
+            {% else %}
+            <img src="{% static 'img/no_picture.png'%}" alt="Placeholder image">
+            {% endif %}
+          </p>
+        </figure>
+        <div class="media-content">
+          <form autocomplete="off" method="post" action="" role="form">
+            {% csrf_token %}
+            <div class="field">
+              <p class="control">
+                {{ form.body }}
+              </p>
+            </div>
+            <div class="field">
+              <p class="control">
+                <button type="submit" name="action" class="button">Commenter</button>
+              </p>
+            </div>
+          </form>
+        </div>
+      </article>
+    </div>
+    
+  {% endblock %}
+  
+  <script>
+    $(".carousel").owlCarousel({
+      margin:10,
+      loop: true,
+      autoplay:true,
+      autoplayTimeoute: 2000,
+      autoplayHoverPause:true,
+      responsive:{
+        0:{
+          items:1,
+          nav: false
+        }
       }
-    }
-  });
-</script>
-</html>
+    });
+  </script>

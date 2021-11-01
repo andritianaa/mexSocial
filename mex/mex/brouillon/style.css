@@ -48,7 +48,8 @@ body{
     overflow: hidden;
     height: 80vh;
 }
-.owl-carousel .owl-item img {
+.owl-carousel .owl-item img,
+.owl-carousel .owl-item video{
     width: auto;
     max-width: 100%;
     height: 100%;

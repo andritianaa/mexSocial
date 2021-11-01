@@ -9,6 +9,7 @@
   <link rel="stylesheet" href="{% static 'css/fontawesome/css/fontawesome-all.css' %}">
   <link rel="shortcut icon" href="{% static 'img/colorLogo.png'%}" type="image/x-icon">
   <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  <link rel="stylesheet" href="{% static 'css/owl.css' %}">
 </head>
 
 <body>
@@ -54,13 +55,30 @@
 <script src="{% static 'js/init.js' %}"></script>
 <script src="{% static 'js/jquery-3.3.1.js' %}"></script>
 <script src="{% static 'js/slider.js' %}"></script>
+<script src="{% static 'js/owl.js' %}"></script>
+
 <script type="text/javascript">
   $(document).ready(function () {
     $('.menu-toggle').click(function () {
       $('.menu-toggle').toggleClass('active')
       $('.nav-list-item').toggleClass('active')
     })
-  })
+  });
+
+
+  $(".carousel").owlCarousel({
+    margin:10,
+    loop: true,
+    autoplay:true,
+    autoplayTimeoute: 2000,
+    autoplayHoverPause:true,
+    responsive:{
+      0:{
+        items:1,
+        nav: false
+      }
+    }
+  });
 </script>
 
 </html>
