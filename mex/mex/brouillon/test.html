@@ -1,86 +1,108 @@
-{% load static %}
-{% load widget_tweaks%}
 <!DOCTYPE html>
 <html>
 
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Inscription</title>
-    <link rel="shortcut icon" href="{% static 'img/colorLogo.png'%}" type="image/x-icon">
-    <link rel="stylesheet" href="{% static 'css/sign.css' %}">
-    <link rel="stylesheet" href="{% static 'css/fontawesome/css/fontawesome-all.css' %}">
+    <title>Accueil</title>
+    <link rel="shortcut icon" href="colorLogo.png" type="image/x-icon">
+    <link rel="stylesheet" href="style.css">
 </head>
 
-<body class="body">
-    <div class="main-login-container">
-        <div class="login-center-text">
-            <div class="login_blur">
-                <h1 class="login-heading">Bienvenue<br>à VOUS!</h1>
+<body>
+    <div class="index_body">
+        <div class="index_card">
+            <div class="index_post_header">
+                <a href=""><img src="profile.jpg" alt="" srcset=""></a>
+                <div class="index_heading">
+                    <p class="index_main_heading">andritianaa</p>
+                    <p class="index_sub_heading">Rakotonimanana Andritiana</p>
+                </div>
+                <i class="fas fa-ellipsis-v">°°°</i>
+
             </div>
-        </div>
-        <div class="login-container">
-            <form autocomplete="off" autocomplete="off" id="sign-formm" method="post" action="" role="form">
-                {% csrf_token %}
-                <h2>Inscription</h2>
-                
-                <div class="input-div one">
-                    <div class="i_login">
-                        <i class="fas fa-user"></i>
-                    </div>
-                    <div class="input_login">
-                        <h5>Nom d'utilisateur</h5>
-                        {% render_field form.username  class="input_login" id="id_username" %}
-                    </div>
-                </div>
+            <div class="index_post_img">
+                <a href=""><img src="background3.jpg" alt="" srcset=""></a>
+            </div>
+            <div class="index_post_footer">
+                <div class="index_left_box">
+                    <a href=""><img src="colorLogo.png" class="heart" alt="" srcset=""></a>
+                    <a href=""><img src="colorLogo.png" alt="" srcset=""></a>
 
-                <div class="input-div two">
-                    <div class="i_login">
-                        <i class="fas fa-lock"></i>
-                    </div>
-                    <div class="input_login">
-                        <h5>Adresse mail</h5>
-                        {% render_field form.mail class="input_login" id="id_mail" %}
-                    </div>
                 </div>
-
-                <div class="input-div two">
-                    <div class="i_login">
-                        <i class="fas fa-lock"></i>
-                    </div>
-                    <div class="input_login">
-                        <h5>Mot de passe</h5>
-                        {% render_field form.password class="input_login" id="id_password" %}
-                    </div>
+                <div class="index_right_box">
+                    <a href=""><img src="colorLogo.png" alt="" srcset=""></a>
                 </div>
-                <div class="input-div two">
-                    <div class="i_login">
-                        <i class="fas fa-lock"></i>
-                    </div>
-                    <div class="input_login">
-                        <h5>Mot de passe</h5>
-                        {% render_field form.confirm_password class="input_login" id="id_confirm_password" %}
-                    </div>
-                </div>
-                
-
-                <a class="a_login" href="{% url 'login' %}">Pas encore de compte?</a>
-                <input type="submit" name="action" class="login-button" value="Connexion">
-                {% if form.errors %}
-                <div>
-                    <div>
-                        <div class="row">
-                            <span style="color: red; font-weight: bold;">{{ form.errors }}</span>
-                          </div>
-                    </div>
-                </div>
-                {% endif %}
-                <input type="hidden" name="next" value="{{ next }}">
-            </form>
-
+            </div>
+            <h4 class="index_likes">4.327 likes</h4>
+            <h4 class="index_post"><b>@andritianaa</b>, visitez mon site web <span>#html</span> <span>#css</span>
+                <span>Javascript</span></h4>
+            <a href="">
+                <h4 class="index_comments">Voir les 200 commentaires</h4>
+            </a>
         </div>
     </div>
 </body>
-<script src="{% static 'js/login.js' %}"></script>
 
 </html>
+
+{% extends 'base.html' %}
+{% load static %}
+{% load humanize %}
+{% block content %}
+<div class="columns is-mobile is-centered">
+  <div class="column is-half">
+    
+    <div class="card">
+      <div class="card-image">
+        {% if post_item.content.first.file.name|slice:"-3:" == 'jpg' or post_item.content.first.file.name|slice:"-3:" == 'png'  or post_item.content.first.file.name|slice:"-4:" == 'jpeg' %}
+        <figure class="image is-5by3">
+          <a href="{{ post_item.get_absolute_url }}">
+            <img src="{{ post_item.content.first.file.url }}" alt="Placeholder image">
+          </a>
+        </figure>
+        {% else %}
+        <a href="{{ post_item.get_absolute_url }}">
+          <video width="1080" controls="controls" preload="metadata">
+            <source src="{{ post_item.content.first.file.url }}#t=0.5" type="video/mp4">
+          </video>
+        </a>
+        {% endif %}
+      </div>
+      <div class="card-content">
+        <div class="media">
+          <div class="media-left">
+            <figure class="image is-48x48">
+              {% if post_item.user.profile.picture %}
+              <img src="{{ post_item.user.profile.picture.url }}" alt="Placeholder image">
+              {% else %}
+              <img src="{% static 'img/no_picture.png'%}" alt="Placeholder image">
+              {% endif %}
+            </figure>
+          </div>
+          <div class="media-content">
+            {% if post_item.user.profile.first_name %}
+            <a href="{% url 'profile' post_item.user %}">
+              <p class="title is-4">{{ post_item.user.profile.first_name }} {{ post_item.user.profile.last_name }}</p>
+            </a>
+            {% else %}
+            <a href="{% url 'profile' post_item.user %}">
+              <p class="title is-4">Inconnu</p>
+            </a>
+            {% endif %}
+            <p class="subtitle is-6">@{{ post_item.user.username }}</p>
+            {{ post_item.caption }}
+            <p>{% for tag in post_item.tags.all %}<a href="{{ tag.get_absolute_url }}">#{{ tag }}</a>{% endfor %}</p>
+            
+            <strong><small>{{ post_item.posted | naturaltime }}</small></strong>
+          </div>
+          <div class="media-right">
+            <a href="{% url 'postlike' post_item.id %}"><i class="material-icons has-text-danger">favorite</i></a>
+            <p>{{ post_item.likes }} Likes</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
