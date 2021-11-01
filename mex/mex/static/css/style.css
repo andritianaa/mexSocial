@@ -55,6 +55,9 @@ body {
 
 /* recherche  */
 .rechercher {
+    z-index: 100;
+    position: fixed;
+    width: 100vw;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -77,9 +80,34 @@ body {
 
 .input_recherche {
     width: 60%;
-    height: 2rem;
-    font-size: 1rem;
+    height: 3rem;
+    border: none;
+    border-radius: var(--boradsmall);
+    font-size: 1.4rem;
     padding-left: 1rem;
+}
+
+
+.search_button {
+    text-transform: uppercase;
+    display: block;
+    width: 100%;
+    height: 50px;
+    border-radius: var(--boradsmall);
+    margin: 1rem;
+    font-size: 1.2rem;
+    outline: none;
+    border: none;
+    background-image: linear-gradient(to right, var(--secondaryColor), var(--primaryColor), var(--secondaryColor));
+    cursor: pointer;
+    color: var(--white);
+    font-family: 'Poppins', sans-serif;
+    background-size: 200%;
+    transition: .5s;
+}
+
+.search_button:hover {
+    background-position: right;
 }
 
 .center_content {
@@ -249,7 +277,16 @@ header a img {
 
 
 /* search result  */
+.user_card_bottom a:hover{
+    color: var(--white);
+}
 
+.resultats_total{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
 .result_list {
     box-sizing: border-box;
 }
@@ -257,16 +294,10 @@ header a img {
 .user_card {
     height: 320px;
     width: 320px;
-    background-color: rgba(255, 255, 255, 0.06);
-    position: absolute;
-    margin: auto;
-    left: 0;
-    right: 0;
-    top: 0;
-    bottom: 0;
+    background-color: rgba(255, 255, 255, 0.5);
+    margin: 1rem;
     backdrop-filter: blur(10px);
     border-radius: 8px;
-    box-shadow: 1rem 1rem 0.4rem rgba(0, 0, 0, .1);
     font-family: var(--smallFont), sans-serif;
 }
 
@@ -300,14 +331,14 @@ header a img {
 }
 
 .user_username_text {
-    color: var(--white);
+    color: var(--blackTxt);
     font-size: 1rem;
     letter-spacing: 0.7px;
     margin: 5px 0;
 }
 
 .user_name_text {
-    color: var(--white);
+    color: var(--blackTxt);
     font-weight: 400;
     font-size: 0.875rem;
     letter-spacing: 1px;
@@ -336,10 +367,12 @@ header a img {
 .user_card_bottom>a:first-child:hover {
     background-color: var(--primaryColor);
     border-radius: 0 0 0 8px;
+    color: var(--white);
 }
 
 .user_card_bottom>a:last-child:hover {
     background-color: var(--primaryColor);
+    color: var(--white);
     border-radius: 0 0 8px 0;
 }
 
@@ -352,14 +385,14 @@ header a img {
 }
 
 .user_card_bottom>a>h4 {
-    color: var(--white);
+    color: var(--blackTxt);
     font-weight: 600;
     padding: 1rem 0;
 }
 
 .user_abonnement {
     text-align: center;
-    color: var(--white);
+    color: var(--blackTxt);
     font-weight: 600;
     background-color: rgba(255, 255, 255, 0.08);
     backdrop-filter: blur(10px);
@@ -374,6 +407,7 @@ header a img {
 
 .user_abonnement:hover {
     background-color: var(--primaryColor);
+    color: var(--white);
 }
 
 /* search result end  */
